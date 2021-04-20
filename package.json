@@ -82,6 +82,8 @@
 		"react-bootstrap": "^1.5.2",
 		"react-dom": "^16.8.4",
 		"react-polyfills": "0.0.1",
-		"react-router-dom": "^5.2.0"
+		"react-router-dom": "^5.2.0",
+		"react-share": "^4.4.0",
+		"react-social-icons": "^5.1.1"
 	}
 }

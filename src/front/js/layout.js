@@ -11,6 +11,7 @@ import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 //importaciones hechas
 // import CompanyCard from "./component/companyCard";
+import { SocialMedia } from "./component/socialMedia";
 
 //create your first component
 const Layout = () => {
@@ -37,6 +38,7 @@ const Layout = () => {
 							<h1>Not found!</h1>
 						</Route>
 					</Switch>
+					<SocialMedia />
 					<Footer />
 				</ScrollToTop>
 			</BrowserRouter>
