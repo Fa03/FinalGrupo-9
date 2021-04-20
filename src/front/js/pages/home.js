@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import { Context } from "../store/appContext";
 import rigoImageUrl from "../../img/rigo-baby.jpg";
 import "../../styles/home.scss";
@@ -9,7 +9,9 @@ import Productlist from "../component/productList";
 
 export const Home = () => {
 	const { store, actions } = useContext(Context);
-
+	useEffect(() => {
+		actions.getProducto();
+	}, []);
 	return (
 		<Container fluid>
 			<Row className="d-flex align-items-center">
