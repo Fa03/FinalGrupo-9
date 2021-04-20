@@ -50,6 +50,7 @@ class User(db.Model):
             "nombre": self.nombre,
             "direccion": self.direccion,
             "telefono": self.telefono,
+            "metodo_pago": self.metodo_pago,
             # do not serialize the password, its a security breach
         }
 
@@ -69,7 +70,7 @@ class Productos(db.Model):
         return {
             "id": self.id,
             "nombre": self.nombre,
-            "categoria": self.categoria,
+            "catego_prod": self.catego_prod,
             "precio": self.precio,
             "detalles": self.detalles,
             "imagen": self.imagen,
