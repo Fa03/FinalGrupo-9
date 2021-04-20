@@ -1,24 +1,23 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			message: null,
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			]
+			producto: []
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
-			exampleFunction: () => {
-				getActions().changeColor(0, "green");
+			getProducto: async () => {
+				const URL = "https://3001-maroon-elephant-xin610r4.ws-us03.gitpod.io/api/productos";
+				const CONFIG = {
+					method: "GET",
+					headers: {
+						"Content-type": "application/json"
+					}
+				};
+				const response = await fetch(URL, CONFIG);
+				const json = await response.json();
+				console.log("DATA >>>", json);
+
+				setStore({ producto: json });
 			},
 
 			getMessage: () => {
