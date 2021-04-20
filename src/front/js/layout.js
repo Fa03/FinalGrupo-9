@@ -9,6 +9,8 @@ import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
+//importaciones hechas
+// import CompanyCard from "./component/companyCard";
 import { SocialMedia } from "./component/socialMedia";
 
 //create your first component
