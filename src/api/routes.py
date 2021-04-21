@@ -25,7 +25,7 @@ def post_cate():
     db.session.add(cate)
     db.session.commit()
 
-    return jsonify("Success!"), 200
+    return jsonify("Categoria agregada!"), 200
 
 # METODOS DE PAGO
 @api.route('/pago/', methods=['GET'])
@@ -50,9 +50,9 @@ def get_prod():
 def post_prod():
 
     request_body = request.get_json()
-    prod = Productos(nombre=request_body["nombre"], precio=request_body["precio"], detalles=request_body["detalles"], categoria=request_body["categoria"], imagen=request_body["imagen"])
+    prod = Productos(nombre=request_body["nombre"], precio=request_body["precio"], detalles=request_body["detalles"], catego_prod=request_body["catego_prod"], imagen=request_body["imagen"])
 
     db.session.add(prod)
     db.session.commit()
 
-    return jsonify("Success!"), 200
+    return jsonify("Producto agregado!"), 200
