@@ -16,6 +16,17 @@ def get_cate():
 
     return jsonify(all_cate), 200
 
+@api.route('/cate/', methods=['POST'])
+def post_cate():
+
+    request_body = request.get_json()
+    cate = Categoria(nombre=request_body["nombre"])
+
+    db.session.add(cate)
+    db.session.commit()
+
+    return jsonify("Success!"), 200
+
 # METODOS DE PAGO
 @api.route('/pago/', methods=['GET'])
 def get_pago():
