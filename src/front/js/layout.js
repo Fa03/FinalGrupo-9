@@ -6,13 +6,12 @@ import { Home } from "./pages/home";
 import { Single } from "./pages/single";
 import { RetrivePass } from "./pages/retrivePass";
 import { Register } from "./pages/register";
+import { Order } from "./pages/order";
 
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
-//importaciones hechas
-// import CompanyCard from "./component/companyCard";
 import { SocialMedia } from "./component/socialMedia";
 import { Login } from "./pages/login";
 
@@ -42,6 +41,9 @@ const Layout = () => {
 						</Route>
 						<Route exact path="/register">
 							<Register />
+						</Route>
+						<Route exact path="/order">
+							<Order />
 						</Route>
 						<Route>
 							<h1>Not found!</h1>
