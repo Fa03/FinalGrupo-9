@@ -56,3 +56,12 @@ def post_prod():
     db.session.commit()
 
     return jsonify("Producto agregado!"), 200
+
+@api.route('/hello', methods=['POST', 'GET'])
+def handle_hello():
+    response_body = {
+
+        "message": "Hello Chino! I'm a message that came from the backend"
+
+    }
+    return jsonify(response_body), 200
