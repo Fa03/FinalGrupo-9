@@ -62,3 +62,7 @@ It is recomended to install the backend first, make sure you have Python 3.8, Pi
 ## Publish your website!
 
 This boilerplate it's 100% integrated with Herkou, just by pushing your changes to the heroku repository it will deploy: `$ git push heroku main`
+
+Install 
+npm install react-social-icons
+------------------------------------------------
