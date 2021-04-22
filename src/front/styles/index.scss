@@ -1,3 +1,17 @@
 /* 
     General Styles
 */
+
+.footerCSS {
+//    position: fixed;
+   position: sticky;
+   left: 0;
+   bottom: 0;
+//    width: 100%;
+   text-align: center;
+   background-color: white;
+   padding-bottom: none;
+   margin-bottom: none;
+   display: inline-block;
+   height: auto;
+}
