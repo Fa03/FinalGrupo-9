@@ -6,7 +6,7 @@ import { Container, Row, Col, Image, Card, Form, Button } from "react-bootstrap"
 
 export const Login = () => {
 	return (
-		<Container>
+		<Container className="mt-5 pt-5">
 			<Row className="pt-5">
 				<Col md={{ span: 6, offset: 3 }}>
 					<Form>

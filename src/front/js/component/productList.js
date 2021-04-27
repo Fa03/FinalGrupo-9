@@ -9,12 +9,19 @@ const Productlist = () => {
 	const { store, actions } = useContext(Context);
 	const params = useParams();
 
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, []);
+
+	let partialArray = store.producto.slice(0, 4);
+	console.log(partialArray);
+
 	return (
 		<Container>
 			<Row>
 				<Col>
 					<ListGroup>
-						{store.producto.map((item, i) => {
+						{partialArray.map((item, i) => {
 							let theid = i;
 							return (
 								<div key={i}>
@@ -29,10 +36,12 @@ const Productlist = () => {
 				</Col>
 			</Row>
 			<Row>
-				<Col className="d-flex justify-content-center pt-3">
-					<Button variant="secondary" type="submit">
-						Nuestros productos
-					</Button>
+				<Col className="d-flex justify-content-center pt-3 mt-5">
+					<Link to="/products">
+						<Button variant="secondary" type="submit">
+							Nuestros productos
+						</Button>
+					</Link>
 				</Col>
 			</Row>
 		</Container>
