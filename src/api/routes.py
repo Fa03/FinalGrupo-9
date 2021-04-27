@@ -57,11 +57,36 @@ def post_prod():
 
     return jsonify("Producto agregado!"), 200
 
-@api.route('/hello', methods=['POST', 'GET'])
-def handle_hello():
-    response_body = {
+# REGISTER
+@api.route('/register', methods=['POST'])
+def regUser():
 
-        "message": "Hello Chino! I'm a message that came from the backend"
+    body = request.get_json()
+    print(body)
+    # if not body.email:
+    #     return "Email requerido", 401
+    # if not body.password:
+    #     return "Password requerido", 401
 
+    email_query = User.query.filter_by(email=body["email"]).first()
+    if email_query:
+        return jsonify("Email ya en uso, utiliza otro"), 401
+
+    user = User(
+        nombre=body["nombre"],
+        apellidos=body["apellidos"],
+        nacimiento=body["nacimiento"],
+        sexo=body["sexo"],
+        telefono=body["telefono"],
+        email=body["email"],
+        password=body["password"]
+        )
+
+    db.session.add(user)
+    db.session.commit()
+
+    response = {
+        "msg": "Usuario agregado correctamente",
+        "email": body["email"]
     }
-    return jsonify(response_body), 200
+    return jsonify(response), 200
