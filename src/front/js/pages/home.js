@@ -11,9 +11,10 @@ export const Home = () => {
 	const { store, actions } = useContext(Context);
 	useEffect(() => {
 		actions.getProducto();
+		window.scrollTo(0, 0);
 	}, []);
 	return (
-		<Container fluid>
+		<Container fluid className="mt-5 pt-5">
 			<Row className="d-flex align-items-center">
 				<Col>
 					<CompanyCard />

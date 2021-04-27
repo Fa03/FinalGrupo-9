@@ -7,6 +7,7 @@ import { Single } from "./pages/single";
 import { RetrivePass } from "./pages/retrivePass";
 import { Register } from "./pages/register";
 import { Order } from "./pages/order";
+import { Products } from "./pages/products";
 
 import injectContext from "./store/appContext";
 
@@ -44,6 +45,9 @@ const Layout = () => {
 						</Route>
 						<Route exact path="/order">
 							<Order />
+						</Route>
+						<Route exact path="/products">
+							<Products />
 						</Route>
 						<Route>
 							<h1>Not found!</h1>
