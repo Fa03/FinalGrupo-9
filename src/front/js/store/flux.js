@@ -1,7 +1,8 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			producto: []
+			producto: [],
+			ordenes: []
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -18,29 +19,24 @@ const getState = ({ getStore, getActions, setStore }) => {
 				console.log("DATA >>>", json);
 
 				setStore({ producto: json });
-			},
-
-			getMessage: () => {
-				// fetching data from the backend
-				fetch(process.env.BACKEND_URL + "/api/hello")
-					.then(resp => resp.json())
-					.then(data => setStore({ message: data.message }))
-					.catch(error => console.log("Error loading message from backend", error));
-			},
-			changeColor: (index, color) => {
-				//get the store
-				const store = getStore();
-
-				//we have to loop the entire demo array to look for the respective index
-				//and change its color
-				const demo = store.demo.map((elm, i) => {
-					if (i === index) elm.background = color;
-					return elm;
-				});
-
-				//reset the global store
-				setStore({ demo: demo });
 			}
+
+			// registerUser() {
+			// 	let myHeaders = new Headers();
+			// 	myHeaders.append("Content-Type", "application/json");
+
+			// 	var raw = JSON.stringify(store.user);
+
+			// 	fetch("https://3001-blue-mink-6mmkh4gt.ws-us03.gitpod.io/api/register", {
+			// 		method: "POST",
+			// 		headers: myHeaders,
+			// 		body: raw,
+			// 		redirect: "follow"
+			// 	})
+			// 		.then(response => response.json())
+			// 		.then(result => console.log(result))
+			// 		.catch(error => console.log("error", error));
+			// }
 		}
 	};
 };
