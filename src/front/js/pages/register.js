@@ -43,7 +43,7 @@ export const Register = () => {
 
 			var raw = JSON.stringify(datos);
 
-			fetch("https://3001-blue-mink-6mmkh4gt.ws-us03.gitpod.io/api/register", {
+			fetch("https://proyectosweetsbyfray.herokuapp.com/api/register", {
 				method: "POST",
 				headers: myHeaders,
 				body: raw,
