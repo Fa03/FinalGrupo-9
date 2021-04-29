@@ -59,7 +59,7 @@ class Productos(db.Model):
     nombre = db.Column(db.String(120), unique=True, nullable=False)
     catego_prod = db.Column(String(80), db.ForeignKey('categoria.nombre'))
     categoria = db.relationship(Categoria)
-    precio = db.Column(db.Integer(), unique=False, nullable=False)
+    precio = db.Column(db.String(80), unique=False, nullable=False)
     detalles = db.Column(db.String(250), unique=False, nullable=False)
     imagen = db.Column(db.String(250), unique=False, nullable=False)
 
