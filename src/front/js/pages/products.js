@@ -13,26 +13,21 @@ export const Products = () => {
 		window.scrollTo(0, 0);
 	}, []);
 
+	let categProductos = ["Mayonesa Keto", "Helado Keto", "Queque"]; //para remplazar con arreglo de categorias del store
+
 	return (
 		<Container className="pt-5 mt-5">
-			<Row>
-				<Col>
-					<h3>Mayonesas Keto</h3>
-					<CarouselHorizontal />
-				</Col>
-			</Row>
-			<Row>
-				<Col>
-					<h3>Helados Keto</h3>
-					<CarouselHorizontal />
-				</Col>
-			</Row>
-			<Row className="pt-5 mt-5">
-				<Col>
-					<h3>Queques</h3>
-					<CarouselHorizontal />
-				</Col>
-			</Row>
+			{categProductos.map((item, i) => {
+				//replazar categProductos con el nombre del arreglo de categorias del store
+				return (
+					<Row key={i}>
+						<Col>
+							<h3>{item}</h3>
+							<CarouselHorizontal categoria={item} />
+						</Col>
+					</Row>
+				);
+			})}
 		</Container>
 	);
 };
