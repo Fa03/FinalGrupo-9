@@ -27,7 +27,6 @@ export const CarouselHorizontal = categoria => {
 		prodPorCategoria.push(grupo);
 	}
 
-	let indiceCateg = 0;
 	return (
 		<Container>
 			<Row className="pb-5">
@@ -39,8 +38,13 @@ export const CarouselHorizontal = categoria => {
 									<CardGroup>
 										{item.map((item2, index2) => {
 											return (
-												<Card key={index2}>
-													<Card.Img variant="top" src={item2.imagen} />
+												<Card key={index2} className="col-3 px-0 mx-2 border-left">
+													<Card.Img
+														variant="top"
+														src={item2.imagen}
+														className="img-fluid cardImagen"
+													/>
+
 													<Card.Body>
 														<Card.Title>{item2.nombre}</Card.Title>
 														<Card.Text>{item2.detalles}</Card.Text>
