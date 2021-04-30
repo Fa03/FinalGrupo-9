@@ -1,9 +1,63 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { Link, useParams, Redirect } from "react-router-dom";
 import { Container, Row, Col, Image, Card, Form, Button } from "react-bootstrap";
 import { Navbar } from "../component/navbar";
 import { Footer } from "../component/footer";
 
 export const RetrivePass = () => {
+	const [newPass, setNewPass] = useState(false);
+
+	const [datos, setDatos] = useState({
+		email: "",
+		password: "",
+		confPassword: ""
+	});
+
+	const handleInputChange = event => {
+		setDatos({
+			...datos,
+			[event.target.name]: event.target.value
+		});
+	};
+
+	const handleSubmit = e => {
+		e.preventDefault();
+		if (datos.password !== datos.confPassword) {
+			// console.log(datos.password, datos.confPassword);
+			alert("Las contraseñas deben coincidir.");
+		} else {
+			console.log(datos);
+
+			var myHeaders = new Headers();
+			myHeaders.append("Content-Type", "application/json");
+
+			var raw = JSON.stringify(datos);
+
+			var requestOptions = {
+				method: "PUT",
+				headers: myHeaders,
+				body: raw,
+				redirect: "follow"
+			};
+
+			fetch("https://proyectosweetsbyfray.herokuapp.com/api/new_pass", {
+				method: "PUT",
+				headers: myHeaders,
+				body: raw,
+				redirect: "follow"
+			})
+				.then(
+					response =>
+						response.status === 200
+							? setTimeout(() => {
+									setNewPass(true);
+							  }, 3000)
+							: null
+				)
+				.then(result => console.log(result))
+				.catch(error => console.log("error", error));
+		}
+	};
 	return (
 		<Container className="my-5 pt-5">
 			<Row className="d-flex align-items-center justify-content-around">
@@ -27,20 +81,20 @@ export const RetrivePass = () => {
 				</Col>
 
 				<Col xs={4}>
-					<Form>
-						<Form.Group controlId="formBasicEmail">
+					<Form onSubmit={handleSubmit}>
+						<Form.Group controlId="formBasicEmail" onChange={handleInputChange}>
 							<Form.Label>Correo Electrónico</Form.Label>
-							<Form.Control type="email" placeholder="Tu Correo" />
+							<Form.Control type="email" placeholder="Tu Correo" name="email" />
 							<Form.Text className="text-muted">{`Tu información estará segura con nosotros`}</Form.Text>
 						</Form.Group>
 
-						<Form.Group controlId="formBasicPassword">
+						<Form.Group controlId="formBasicPassword" onChange={handleInputChange}>
 							<Form.Label>Contraseña</Form.Label>
-							<Form.Control type="password" placeholder="Nueva Contraseña" />
+							<Form.Control type="password" placeholder="Nueva Contraseña" name="password" />
 						</Form.Group>
-						<Form.Group controlId="formBasicPassword">
+						<Form.Group controlId="formBasicPassword" onChange={handleInputChange}>
 							<Form.Label>Confirmar Contraseña</Form.Label>
-							<Form.Control type="password" placeholder="Confirma Contraseña" />
+							<Form.Control type="password" placeholder="Confirma Contraseña" name="confPassword" />
 						</Form.Group>
 						{/* <Form.Group controlId="formBasicCheckbox">
 							<Form.Check type="checkbox" label="Check me out" />
@@ -55,6 +109,7 @@ export const RetrivePass = () => {
 					</Form>
 				</Col>
 			</Row>
+			{newPass ? <Redirect to="/login" /> : null}
 		</Container>
 	);
 };

@@ -90,3 +90,22 @@ def regUser():
         "email": body["email"]
     }
     return jsonify(response), 200
+
+# NUEVA CONTRASEÑA
+@api.route('/new_pass', methods=['PUT'])
+def updPassword():
+
+    upd_pass = request.json["password"]
+    email = request.json["email"]
+
+    user = User.query.filter_by(email=email).first()
+
+    if user is None:
+        raise APIException('No existe usuario con ese correo', status_code=404)
+
+    user.password=upd_pass
+    print(user.password)
+    
+    db.session.commit()
+
+    return jsonify("Contraseña actualizada"), 200
