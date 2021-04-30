@@ -40,7 +40,7 @@ export const RetrivePass = () => {
 				redirect: "follow"
 			};
 
-			fetch("https://3001-copper-ermine-tyu2uz7j.ws-us04.gitpod.io/api/new_pass", {
+			fetch("https://proyectosweetsbyfray.herokuapp.com/api/new_pass", {
 				method: "PUT",
 				headers: myHeaders,
 				body: raw,
