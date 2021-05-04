@@ -81,6 +81,7 @@
 		"@material-ui/icons": "^4.11.2",
 		"@material-ui/pickers": "^3.3.10",
 		"bootstrap": "^4.6.0",
+		"bootswatch": "^4.6.0",
 		"date-fns": "^2.21.1",
 		"prop-types": "^15.6.1",
 		"react": "^16.8.4",

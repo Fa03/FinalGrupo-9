@@ -38,7 +38,7 @@ const Productlist = () => {
 			<Row>
 				<Col className="d-flex justify-content-center pt-3 mt-5">
 					<Link to="/products">
-						<Button variant="secondary" type="submit">
+						<Button variant="primary" type="submit">
 							Nuestros productos
 						</Button>
 					</Link>
