@@ -49,8 +49,11 @@ export const CarouselHorizontal = categoria => {
 														<Card.Title>{item2.nombre}</Card.Title>
 														<Card.Text>{item2.detalles}</Card.Text>
 													</Card.Body>
-													<Card.Footer>
-														<small className="text-muted">Last updated 3 mins ago</small>
+													<Card.Footer className="d-flex justify-content-between">
+														<small className="text-muted">Precio &#162;</small>
+														<Button variant="light" className="buttonComprar text-clor:red">
+															Comprar
+														</Button>
 													</Card.Footer>
 												</Card>
 											);

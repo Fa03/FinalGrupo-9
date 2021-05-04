@@ -2,10 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Image, Container, Row, Col } from "react-bootstrap";
 import ShoppingCartOutlinedICon from "@material-ui/icons/ShoppingCartOutlined";
+import index from "../../styles/index.scss";
 
 export const Navbar = () => {
 	return (
-		<Container fluid className="sticky-top position-fixed">
+		<Container fluid className="sticky-top position-fixed contNavBar">
 			<Row>
 				<Col>
 					<nav className="navbar navbar-light bg-light mb-3">
