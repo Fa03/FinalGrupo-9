@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import { Link, useParams, Redirect } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { Container, Row, Col, Image, Card, Form, Button } from "react-bootstrap";
-import { DataPicker } from "../component/dataPicker";
 import { SocialMedia } from "../component/modalTerms";
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -80,11 +79,6 @@ export const Register = () => {
 							</Form.Group>
 						</Form.Row>
 						<Form.Row>
-							<Form.Group as={Col} controlId="formGridNacimiento">
-								<Form.Label name="nacimiento">Fecha de nacimiento*</Form.Label>
-								<DataPicker onChange={handleInputChange} />
-							</Form.Group>
-
 							<Form.Group as={Col} controlId="formGridSexo" onChange={handleInputChange}>
 								<Form.Label>Sexo</Form.Label>
 								<Form.Control as="select" defaultValue="Elegir..." name="sexo">

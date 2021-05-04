@@ -6,7 +6,8 @@ import index from "../../styles/index.scss";
 
 export const Footer = () => (
 	<footer className="footer mt-auto pt-1 mb-0 text-center footerCSS">
-		<Container>
+		<Container fluid className="table-secundary">
+			<br />
 			<Row className="d-flex justify-content-center">
 				<Col fontSize="small">
 					<span className="pr-1">
@@ -44,7 +45,7 @@ export const Footer = () => (
 					<p className="small">
 						© 2021, Built By
 						<Link to="/">
-							<p>CR-PT-1 Group 9</p>
+							<p color="white">CR-PT-1 Group 9</p>
 						</Link>
 					</p>
 				</Col>
