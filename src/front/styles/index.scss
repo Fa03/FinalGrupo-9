@@ -2,6 +2,27 @@
     General Styles
 */
 
+
+@import url('https://fonts.googleapis.com/css2?family=Akaya+Kanadaka&family=Cabin+Sketch&family=Montserrat&family=Petit+Formal+Script&family=Quattrocento+Sans&display=Indie+Flower&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+
+.tituloNavBar {
+    font-family: 'Petit Formal Script', cursive;
+}
+
+.textoLista, .cardTitle {
+    font-family: 'Cabin Sketch', cursive;
+    font-size: 22px;
+    color: rgb(202, 107, 49)
+}
+
+.textHistoria{
+    font-family: 'Indie Flower', cursive;
+    font-size: large;
+    color: rgb(202, 107, 49)
+}
+
+
 .footerCSS {
 //    position: fixed;
    position: sticky;
@@ -13,8 +34,9 @@
    padding-bottom: none;
    margin-bottom: none;
    display: inline-block;
-   height: auto;
+//    height: auto;
    z-index: 20;
+   background-color: #e6bfc0;
 }
 
 
@@ -27,3 +49,44 @@
 .carousel-indicators{ 
     visibility: hidden; 
 }
+
+.contNavBar, navbar {
+    background-color: #e6bfc0;
+}
+
+.buttonComprar {
+    background: #dbc5b0;
+}
+
+.btn-primary {
+    color: #c3777b;
+}
+
+.Container {
+    background-color: #bb9d89;
+}
+
+.imgLista{
+   width: 100%;
+   height: auto;
+}
+
+@supports(object-fit: cover){
+    .imgLista{
+        height: 100%;
+        object-fit: cover;
+        object-position: center center;
+    }
+}
+
+.contenedorImagen{
+    width: 90px;
+    height: 90px;
+    overflow: hidden;
+    background-color: red;
+    border-radius: 50%;
+}
+
+
+
+

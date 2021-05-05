@@ -14,7 +14,7 @@ export const Home = () => {
 		window.scrollTo(0, 0);
 	}, []);
 	return (
-		<Container fluid className="mt-5 pt-5">
+		<Container fluid className="mt-5 pt-5" style={{ background: "#d8d1d8" }}>
 			<Row className="d-flex align-items-center">
 				<Col>
 					<CompanyCard />

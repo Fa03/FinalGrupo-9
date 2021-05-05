@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { SocialIcon } from "react-social-icons";
+
 import { Col, Row, Container } from "react-bootstrap";
 
 export const SocialMedia = () => {
@@ -13,7 +14,7 @@ export const SocialMedia = () => {
 			</Row>
 
 			<Row className="justify-content-md-center">
-				<Col md={{ span: 6, offset: 3 }}>
+				<Col md={{ span: 6, offset: 3 }} style={{ color: "white" }}>
 					<SocialIcon url="https://www.facebook.com/" />
 
 					<SocialIcon url="https://www.instagram.com/" />

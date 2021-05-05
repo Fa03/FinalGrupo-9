@@ -16,13 +16,13 @@ export const Products = () => {
 	let categProductos = ["Mayonesa Keto", "Helado Keto", "Queque"]; //para remplazar con arreglo de categorias del store
 
 	return (
-		<Container className="pt-5 mt-5">
+		<Container fluid className="pt-5 mt-5" style={{ background: "#d8d1d8" }}>
 			{categProductos.map((item, i) => {
 				//replazar categProductos con el nombre del arreglo de categorias del store
 				return (
 					<Row key={i}>
 						<Col>
-							<h3>{item}</h3>
+							<h3 className="ml-5 pl-5 pb-2">{item}</h3>
 							<CarouselHorizontal categoria={item} />
 						</Col>
 					</Row>
