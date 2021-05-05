@@ -1,20 +1,22 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
-
+import "bootswatch/dist/litera/bootstrap.min.css";
 import { Home } from "./pages/home";
 import { Single } from "./pages/single";
 import { RetrivePass } from "./pages/retrivePass";
 import { Register } from "./pages/register";
 import { Order } from "./pages/order";
 import { Products } from "./pages/products";
+import { Login } from "./pages/login";
+import SignIn from "./pages/login2";
+import SignUp from "./pages/register2";
 
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import { SocialMedia } from "./component/socialMedia";
-import { Login } from "./pages/login";
 
 //create your first component
 const Layout = () => {
@@ -23,7 +25,7 @@ const Layout = () => {
 	const basename = process.env.BASENAME || "";
 
 	return (
-		<div className="d-flex flex-column h-100">
+		<div className="d-flex flex-column h-100" style={{ background: "#d8d1d8" }}>
 			<BrowserRouter basename={basename}>
 				<ScrollToTop>
 					<Navbar />
@@ -38,10 +40,10 @@ const Layout = () => {
 							<RetrivePass />
 						</Route>
 						<Route exact path="/login">
-							<Login />
+							<SignIn />
 						</Route>
 						<Route exact path="/register">
-							<Register />
+							<SignUp />
 						</Route>
 						<Route exact path="/order">
 							<Order />

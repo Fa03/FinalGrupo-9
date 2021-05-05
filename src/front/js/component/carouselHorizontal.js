@@ -28,7 +28,7 @@ export const CarouselHorizontal = categoria => {
 	}
 
 	return (
-		<Container>
+		<Container style={{ background: "#d8d1d8" }}>
 			<Row className="pb-5">
 				<Col>
 					<Carousel fade interval={10000}>
@@ -42,7 +42,8 @@ export const CarouselHorizontal = categoria => {
 													<Card.Img
 														variant="top"
 														src={item2.imagen}
-														className="img-fluid cardImagen"
+														className="img-fluid "
+														id="cardImagen"
 													/>
 
 													<Card.Body>
@@ -50,8 +51,12 @@ export const CarouselHorizontal = categoria => {
 														<Card.Text>{item2.detalles}</Card.Text>
 													</Card.Body>
 													<Card.Footer className="d-flex justify-content-between">
-														<small className="text-muted">Precio &#162;</small>
-														<Button variant="light" className="buttonComprar text-clor:red">
+														<small className="text-muted">
+															Precio &#162; {item2.precio}
+														</small>
+														<Button
+															style={{ background: "#c3777b", border: "none" }}
+															className="buttonComprar text-clor:red">
 															Comprar
 														</Button>
 													</Card.Footer>
