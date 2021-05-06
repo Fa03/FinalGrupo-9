@@ -20,23 +20,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				setStore({ producto: json });
 			}
-
-			// registerUser() {
-			// 	let myHeaders = new Headers();
-			// 	myHeaders.append("Content-Type", "application/json");
-
-			// 	var raw = JSON.stringify(store.user);
-
-			// 	fetch("https://3001-blue-mink-6mmkh4gt.ws-us03.gitpod.io/api/register", {
-			// 		method: "POST",
-			// 		headers: myHeaders,
-			// 		body: raw,
-			// 		redirect: "follow"
-			// 	})
-			// 		.then(response => response.json())
-			// 		.then(result => console.log(result))
-			// 		.catch(error => console.log("error", error));
-			// }
 		}
 	};
 };
