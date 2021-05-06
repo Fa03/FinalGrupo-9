@@ -114,7 +114,6 @@ export const Register = () => {
 							<Form.Control type="password" placeholder="Confirmar contraseña" name="confPassword" />
 						</Form.Group>
 
-						<SocialMedia />
 						<Button variant="primary" type="submit" onClick={handleSubmit}>
 							Registrarse
 						</Button>
