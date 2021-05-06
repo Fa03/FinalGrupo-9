@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Image, Container, Row, Col, Button } from "react-bootstrap";
 import StorefrontIcon from "@material-ui/icons/Storefront";
 import index from "../../styles/index.scss";
 
 export const Navbar = () => {
+	let sessToken = sessionStorage.getItem("token");
 	return (
 		<Container fluid className="sticky-top position-fixed contNavBar">
 			<Row>
@@ -25,15 +26,19 @@ export const Navbar = () => {
 							</p>
 						</div>
 						<div>
-							<Link to="/login">
-								<Button type="button" style={{ background: "#c3777b", border: "none" }}>
-									Ingresar / Registrarse
-								</Button>
-							</Link>
-
 							<Link to="/order" style={{ color: "white" }}>
 								<StorefrontIcon className="pl-1" style={{ fontSize: 60 }} color="none" />
 							</Link>
+
+							{sessToken ? (
+								"Esto si está logueado"
+							) : (
+								<Link to="/login">
+									<Button type="button" style={{ background: "#c3777b", border: "none" }}>
+										Ingresar / Registrarse
+									</Button>
+								</Link>
+							)}
 						</div>
 					</nav>
 				</Col>
