@@ -22,6 +22,7 @@ export const Products = () => {
 				return (
 					<Row key={i}>
 						<Col>
+							<br />
 							<h3 className="ml-5 pl-5 pb-2">{item}</h3>
 							<CarouselHorizontal categoria={item} />
 						</Col>

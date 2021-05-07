@@ -2,7 +2,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			producto: [],
-			ordenes: []
+			ordenes: [],
+			favorites: []
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -19,6 +20,21 @@ const getState = ({ getStore, getActions, setStore }) => {
 				console.log("DATA >>>", json);
 
 				setStore({ producto: json });
+			},
+
+			setFavorites: async value => {
+				const store = getStore();
+				const { favorites } = store;
+
+				setStore({ favorites: [...favorites, value] });
+			},
+
+			deleteFavorite: async value => {
+				const store = getStore();
+				const { favorites } = store;
+				const favo = favorites.filter(item => item !== value);
+
+				setStore({ favorites: [...favo] });
 			}
 		}
 	};

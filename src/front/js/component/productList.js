@@ -18,7 +18,7 @@ const Productlist = () => {
 	console.log(partialArray);
 
 	return (
-		<Container className="mt-3 pt-3">
+		<Container>
 			<Row className="mb-1">
 				<Col>
 					<ListGroup>

@@ -14,7 +14,7 @@ import SignUp from "./pages/register2";
 
 import injectContext from "./store/appContext";
 
-import { Navbar } from "./component/navbar";
+import { NavBar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import { SocialMedia } from "./component/socialMedia";
 
@@ -28,7 +28,7 @@ const Layout = () => {
 		<div className="d-flex flex-column h-100" style={{ background: "#d8d1d8" }}>
 			<BrowserRouter basename={basename}>
 				<ScrollToTop>
-					<Navbar />
+					<NavBar />
 					<Switch>
 						<Route exact path="/">
 							<Home />

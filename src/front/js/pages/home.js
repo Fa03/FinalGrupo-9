@@ -1,7 +1,7 @@
 import React, { useEffect, useContext } from "react";
 import { Context } from "../store/appContext";
 import rigoImageUrl from "../../img/rigo-baby.jpg";
-import "../../styles/home.scss";
+
 // creadas
 import CompanyCard from "../component/companyCard";
 import { Container, Row, Col, Image } from "react-bootstrap";

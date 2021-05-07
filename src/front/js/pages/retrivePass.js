@@ -62,6 +62,8 @@ export const RetrivePass = () => {
 		<Container className="my-5 pt-5 d-flex">
 			<Row className="d-flex align-items-center justify-content-around">
 				<Col xs={4}>
+					<br />
+
 					<Image
 						src="https://img.taste.com.au/lmVc1ciM/taste/2018/03/apr-18_apple-blueberry-pie-with-cinnamon-pastry-3000x2000-136232-1.jpg"
 						thumbnail
