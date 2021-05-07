@@ -10,9 +10,9 @@ export const NavBar = () => {
 	const { store, actions } = useContext(Context);
 	let sessToken = sessionStorage.getItem("token");
 	return (
-		<Container fluid className="sticky-top position-fixed contNavBar">
-			<Row>
-				<Col sm={2}>
+		<Container fluid className="sticky-top position-fixed contNavBar ">
+			<Row fluid>
+				<Col sm={2} style={{ padding: "10px" }}>
 					<Link to="/">
 						<Image
 							src="https://bl3301files.storage.live.com/y4mL88PRYo24KzhwyhNBaqkLtgWVsAXvbDAFqA7EjwOjVgZKDkVMaJWI_HKZ-pVLCgPnPaqa9QnvLwzXfLOca01kmGIv44UGXCrAyGInHIOHAHY-ULwvw--5Be7XkBhJlCZstGRA9MblS8bThEudsIai0HyPdl2fuaWPL-jE7si6YXLZNTDiSucyxxLgOMW4_t9?width=85&height=85&cropmode=none"
@@ -23,7 +23,7 @@ export const NavBar = () => {
 						/>
 					</Link>
 				</Col>
-				<Col className="row align-items-center justify-content-center " sm={6}>
+				<Col className="row align-items-center justify-content-center" sm={6}>
 					<div className="pl-5">
 						<p className="h1 tituloNavBar" style={{ color: "#de1f55" }}>
 							Sweets by Fray
@@ -32,7 +32,7 @@ export const NavBar = () => {
 				</Col>
 
 				<Col sm={1} />
-				<Col className="row align-items-center" sm={2}>
+				<Col className="d-flex align-items-center justify-content-end" sm={2} style={{ padding: "1px" }}>
 					{sessToken ? (
 						"Esto si está logueado"
 					) : (
@@ -43,9 +43,9 @@ export const NavBar = () => {
 						</Link>
 					)}
 				</Col>
-				<Col className="justify-content-left" sm={1}>
+				<Col className="d-flex align-items-center justify-content-start" sm={1} style={{ padding: "1px" }}>
 					<Dropdown>
-						<Dropdown.Toggle variant="defauld" id="dropdown-basic">
+						<Dropdown.Toggle variant="defauld" id="dropdown-basic" style={{ padding: "1px" }}>
 							<StorefrontIcon color="none" style={{ fontSize: 60, color: "white" }} />
 
 							{store.favorites.length}
