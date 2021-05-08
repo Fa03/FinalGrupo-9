@@ -12,7 +12,7 @@ export default function CheckoutForm() {
 
 	useEffect(() => {
 		// Create PaymentIntent as soon as the page loads
-		fetch("https://3001-peach-angelfish-4ga9z5mq.ws-us03.gitpod.io/api/create-payment-intent", {
+		fetch("https://3001-rose-ermine-0qw9q0pn.ws-us03.gitpod.io/api/create-payment-intent", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json"
