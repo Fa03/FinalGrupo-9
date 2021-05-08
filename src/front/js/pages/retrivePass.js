@@ -26,7 +26,7 @@ export const RetrivePass = () => {
 			// console.log(datos.password, datos.confPassword);
 			alert("Las contraseñas deben coincidir.");
 		} else {
-			console.log(datos);
+			// console.log(datos);
 
 			var myHeaders = new Headers();
 			myHeaders.append("Content-Type", "application/json");
@@ -40,7 +40,7 @@ export const RetrivePass = () => {
 				redirect: "follow"
 			};
 
-			fetch("https://proyectosweetsbyfray.herokuapp.com/api/new_pass", {
+			fetch("https://3001-blue-koi-rys0mz5q.ws-us03.gitpod.io/api/new_pass", {
 				method: "PUT",
 				headers: myHeaders,
 				body: raw,
@@ -51,7 +51,7 @@ export const RetrivePass = () => {
 						response.status === 200
 							? setTimeout(() => {
 									setNewPass(true);
-							  }, 3000)
+							  }, 2000)
 							: null
 				)
 				.then(result => console.log(result))

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -11,7 +11,7 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, Redirect } from "react-router-dom";
 import { Card, Form, Col } from "react-bootstrap";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -44,9 +44,73 @@ const useStyles = makeStyles(theme => ({
 export default function SignUp() {
 	const classes = useStyles();
 	const [sex, setSex] = React.useState("");
+	const [confReg, setConfReg] = useState(false);
+	const [datos, setDatos] = useState({
+		nombre: "",
+		apellidos: "",
+		nacimiento: "",
+		sexo: "",
+		telefono: "",
+		email: "",
+		password: "",
+		confPassword: ""
+	});
 
 	const handleChangeSex = event => {
 		setSex(event.target.value);
+		if (event.target.value == 10) {
+			setDatos({
+				...datos,
+				[event.target.name]: "Masculino"
+			});
+		} else if (event.target.value == 20) {
+			setDatos({
+				...datos,
+				[event.target.name]: "Femenino"
+			});
+		}
+	};
+
+	const handleInputChange = event => {
+		setDatos({
+			...datos,
+			[event.target.name]: event.target.value
+		});
+	};
+
+	const handleSubmit = e => {
+		e.preventDefault();
+		if (datos.password !== datos.confPassword) {
+			// console.log(datos.password, datos.confPassword);
+			alert("Las contraseñas deben coincidir.");
+		} else {
+			// console.log(datos);
+
+			let myHeaders = new Headers();
+			myHeaders.append("Content-Type", "application/json");
+
+			var raw = JSON.stringify(datos);
+
+			fetch("https://proyectosweetsbyfray.herokuapp.com/api/register", {
+				method: "POST",
+				headers: myHeaders,
+				body: raw,
+				redirect: "follow"
+			})
+				.then(response => {
+					response.status === 200
+						? setTimeout(() => {
+								setConfReg(true);
+						  }, 2000)
+						: null;
+					return response.json();
+				})
+				// .then(data => console.log(data))
+				.catch(error => {
+					console.log("error", error);
+					alert("No se completó el registro, favor contactarnos directamente");
+				});
+		}
 	};
 	return (
 		<Container component="main" maxWidth="sm">
@@ -59,7 +123,7 @@ export default function SignUp() {
 				<Typography component="h1" variant="h5">
 					Registrarse
 				</Typography>
-				<form className={classes.form} noValidate>
+				<form className={classes.form} noValidate onSubmit={handleSubmit}>
 					<Grid container spacing={2}>
 						<Grid item xs={12} sm={5}>
 							<TextField
@@ -71,6 +135,7 @@ export default function SignUp() {
 								id="nombre"
 								label="Nombre"
 								autoFocus
+								onChange={handleInputChange}
 							/>
 						</Grid>
 						<Grid item xs={12} sm={7}>
@@ -82,12 +147,15 @@ export default function SignUp() {
 								fullWidth
 								id="apellidos"
 								label="apellidos"
+								onChange={handleInputChange}
 							/>
 						</Grid>
 						<Grid item xs={12} sm={4}>
 							<form className={classes.container} noValidate>
 								<TextField
 									id="date"
+									name="nacimiento"
+									onChange={handleInputChange}
 									label="Fecha de nacimiento"
 									type="date"
 									className={classes.textField}
@@ -104,9 +172,10 @@ export default function SignUp() {
 									labelId="demo-simple-select-label"
 									id="demo-simple-select"
 									value={sex}
-									onChange={handleChangeSex}>
-									<MenuItem value={10}>Hombre</MenuItem>
-									<MenuItem value={20}>Mujer</MenuItem>
+									onChange={handleChangeSex}
+									name="sexo">
+									<MenuItem value={10}>Masculino</MenuItem>
+									<MenuItem value={20}>Femenino</MenuItem>
 								</Select>
 							</FormControl>
 						</Grid>
@@ -118,6 +187,7 @@ export default function SignUp() {
 								fullWidth
 								id="telefono"
 								label="Telefono"
+								onChange={handleInputChange}
 							/>
 						</Grid>
 
@@ -130,6 +200,7 @@ export default function SignUp() {
 								label="Correo"
 								name="email"
 								autoComplete="email"
+								onChange={handleInputChange}
 							/>
 						</Grid>
 						<Grid item xs={12}>
@@ -142,6 +213,7 @@ export default function SignUp() {
 								type="password"
 								id="password"
 								autoComplete="current-password"
+								onChange={handleInputChange}
 							/>
 						</Grid>
 						<Grid item xs={12}>
@@ -149,11 +221,12 @@ export default function SignUp() {
 								variant="outlined"
 								required
 								fullWidth
-								name="password1"
+								name="confPassword"
 								label="Confirmar contraseña"
-								type="password1"
+								type="password"
 								id="password1"
 								autoComplete="current-password"
+								onChange={handleInputChange}
 							/>
 						</Grid>
 					</Grid>
@@ -169,6 +242,7 @@ export default function SignUp() {
 					</Grid>
 				</form>
 			</div>
+			{confReg ? <Redirect to="/login" /> : null}
 		</Container>
 	);
 }

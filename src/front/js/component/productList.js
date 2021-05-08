@@ -15,7 +15,7 @@ const Productlist = () => {
 	}, []);
 
 	let partialArray = store.producto.slice(0, 4);
-	console.log(partialArray);
+	// console.log(partialArray);
 
 	return (
 		<Container className="mt-3 pt-3">

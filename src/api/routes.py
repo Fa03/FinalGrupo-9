@@ -2,12 +2,21 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Productos, Categoria, Pago
+from api.models import db, User, Productos, Categoria, Pago, Ordenes
 from api.utils import generate_sitemap, APIException
 import datetime
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
 
 api = Blueprint('api', __name__)
+
+# USERS
+@api.route('/users/', methods=['GET'])
+def getUsers():
+
+    user = User.query.all()
+    all_user = list(map(lambda x: x.serialize(), user))
+
+    return jsonify(all_user), 200
 
 # CATEGORIA
 @api.route('/cate/', methods=['GET'])
@@ -127,7 +136,56 @@ def userLogin():
         print(user)
         # create a new token with the user id inside
         access_token = create_access_token(identity=user.email)
-        return jsonify({ "token": access_token, "email": user.email }), 200
+        return jsonify({ "token": access_token, "email": user.email, "nombre": user.nombre }), 200
 
 
 # RUTAS PROTEGIDAS
+
+# CREAR NUEVA ORDEN
+@api.route('/newOrder', methods=['POST'])
+# @jwt_required
+def createOrder():
+
+    # user = get_jwt_identity()
+
+    body = request.get_json()
+    print(body)
+
+    email_query = User.query.filter_by(email=body["usuario"]).first()
+    if email_query is None:
+        return jsonify("Usuario no existe, inicie sesión para crear orden"), 401
+
+    orden = Ordenes(
+        usuario=body["usuario"],
+        productos=body["productos"],
+        monto=body["monto"],
+        dirección=body["dirección"],
+        metodo=body["metodo"]
+        )
+
+    db.session.add(orden)
+    db.session.commit()
+
+    response = "Orden creada para usuario " + body["usuario"]
+
+    return jsonify(response), 200
+
+# GET ORDENES DE USUARIO
+@api.route('/myOrders', methods=['POST'])
+# @jwt_required
+def getOrder():
+
+    # userID = get_jwt_identity()
+    email = request.json.get("email", None)
+
+    orden = Ordenes.query.filter_by(usuario=email)
+
+    if orden is None:
+        return jsonify("Usuario no tiene órdenes creadas"), 401
+
+    
+    todas = list(map(lambda x: x.serialize(), orden))
+
+    return jsonify(todas), 200
+
+    
