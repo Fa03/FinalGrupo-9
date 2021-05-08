@@ -8,7 +8,11 @@ import { ModalCarrito } from "./modalCarrito";
 
 export const Navbar = () => {
 	const { store, actions } = useContext(Context);
-
+	const userData = JSON.parse(sessionStorage.getItem("user"));
+	const logout = e => {
+		sessionStorage.removeItem("user");
+		window.location.reload(false);
+	};
 	return (
 		<Container fluid className="sticky-top position-fixed contNavBar">
 			<Row>
@@ -29,11 +33,22 @@ export const Navbar = () => {
 							</p>
 						</div>
 						<div>
-							<Link to="/login">
-								<Button type="button" style={{ background: "#c3777b", border: "none" }}>
-									Ingresar / Registrarse
-								</Button>
-							</Link>
+							{userData ? (
+								<Link to="/">
+									<Button
+										type="button"
+										style={{ background: "#c3777b", border: "none" }}
+										onClick={logout}>
+										Cerrar Sesión
+									</Button>
+								</Link>
+							) : (
+								<Link to="/login">
+									<Button type="button" style={{ background: "#c3777b", border: "none" }}>
+										Ingresar / Registrarse
+									</Button>
+								</Link>
+							)}
 
 							{/* <Link onClick={<ModalCarrito />} style={{ color: "white" }}> */}
 							{/* <Link onClick={ModalCarrito()} style={{ color: "white" }}> */}
