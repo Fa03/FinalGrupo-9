@@ -6,6 +6,7 @@ db = SQLAlchemy()
 class Categoria(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(120), unique=True, nullable=False)
+    productos = db.relationship('Productos', backref='categoria', lazy=True)
 
     def __repr__(self):
         return '<Categoria %r>' % self.nombre
@@ -35,7 +36,7 @@ class User(db.Model):
     apellidos = db.Column(db.String(80), unique=False, nullable=False)
     nacimiento = db.Column(db.String(80), unique=False, nullable=True)
     sexo = db.Column(db.String(80), unique=False, nullable=False)
-    telefono = db.Column(db.Integer(), unique=False, nullable=False)
+    telefono = db.Column(db.String(80), unique=False, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(80), unique=False, nullable=False)
 
@@ -58,7 +59,6 @@ class Productos(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(120), unique=True, nullable=False)
     catego_prod = db.Column(String(80), db.ForeignKey('categoria.nombre'))
-    categoria = db.relationship(Categoria)
     precio = db.Column(db.String(80), unique=False, nullable=False)
     detalles = db.Column(db.String(250), unique=False, nullable=False)
     imagen = db.Column(db.String(250), unique=False, nullable=False)
@@ -74,4 +74,26 @@ class Productos(db.Model):
             "precio": self.precio,
             "detalles": self.detalles,
             "imagen": self.imagen,
+        }
+
+class Ordenes(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    usuario = db.Column(String(120), db.ForeignKey('user.email'))
+    user = db.relationship(User)
+    monto = db.Column(db.String(80), unique=False, nullable=False)
+    productos = db.Column(db.String(250), unique=False, nullable=False)
+    dirección = db.Column(db.String(250), unique=False, nullable=False)
+    metodo = db.Column(db.String(80), unique=False, nullable=False)
+
+    def __repr__(self):
+        return '<Ordenes %r>' % self.id
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "usuario": self.usuario,
+            "productos": self.productos,
+            "monto": self.monto,
+            "dirección": self.dirección,
+            "metodo": self.metodo,
         }

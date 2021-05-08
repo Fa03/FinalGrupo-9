@@ -2,7 +2,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			producto: [],
-			ordenes: []
+			ordenes: [],
+			users: []
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -16,9 +17,24 @@ const getState = ({ getStore, getActions, setStore }) => {
 				};
 				const response = await fetch(URL, CONFIG);
 				const json = await response.json();
-				console.log("DATA >>>", json);
+				// console.log("DATA >>>", json);
 
 				setStore({ producto: json });
+			},
+
+			getUsers: async () => {
+				const URL = "https://3001-blue-koi-rys0mz5q.ws-us03.gitpod.io/api/users";
+				const CONFIG = {
+					method: "GET",
+					headers: {
+						"Content-type": "application/json"
+					}
+				};
+				const response = await fetch(URL, CONFIG);
+				const json = await response.json();
+				// console.log("DATA >>>", json);
+
+				setStore({ users: json });
 			}
 		}
 	};

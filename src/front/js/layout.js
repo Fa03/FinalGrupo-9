@@ -7,6 +7,7 @@ import { Single } from "./pages/single";
 import { RetrivePass } from "./pages/retrivePass";
 import { Register } from "./pages/register";
 import { Order } from "./pages/order";
+import { MyOrders } from "./pages/myOrders";
 import { Products } from "./pages/products";
 import { Login } from "./pages/login";
 import SignIn from "./pages/login2";
@@ -47,6 +48,9 @@ const Layout = () => {
 						</Route>
 						<Route exact path="/order">
 							<Order />
+						</Route>
+						<Route exact path="/myOrders">
+							<MyOrders />
 						</Route>
 						<Route exact path="/products">
 							<Products />

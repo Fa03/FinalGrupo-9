@@ -11,7 +11,7 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, Redirect } from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
 	paper: {
@@ -35,6 +35,66 @@ const useStyles = makeStyles(theme => ({
 
 export default function SignIn() {
 	const classes = useStyles();
+	const [datos, setDatos] = useState({
+		email: "",
+		password: ""
+	});
+
+	const [confLog, setConfLog] = useState(false);
+
+	const handleInputChange = event => {
+		setDatos({
+			...datos,
+			[event.target.name]: event.target.value
+		});
+	};
+
+	const handleSubmit = e => {
+		e.preventDefault();
+		if (datos.password == null || datos.email == null) {
+			alert("Ingrese su correo y su contraseña");
+		} else {
+			// console.log(datos);
+
+			// FETCH LOGIN
+			var myHeaders = new Headers();
+			myHeaders.append("Content-Type", "application/json");
+
+			var raw = JSON.stringify(datos);
+
+			var requestOptions = {
+				method: "POST",
+				headers: myHeaders,
+				body: raw,
+				redirect: "follow"
+			};
+
+			fetch("https://3001-blue-koi-rys0mz5q.ws-us03.gitpod.io/api/login", requestOptions)
+				.then(response => {
+					response.status === 200
+						? setTimeout(() => {
+								setConfLog(true);
+						  }, 2000)
+						: null;
+					return response.json();
+				})
+				.then(data => {
+					console.log(data);
+					if (typeof Storage !== "undefined") {
+						sessionStorage.setItem(
+							"user",
+							JSON.stringify({
+								token: data.token,
+								email: data.email,
+								nombre: data.nombre
+							})
+						);
+						// sessionStorage.setItem();
+					}
+				})
+				.catch(error => console.log("error", error));
+		}
+	};
 
 	return (
 		<Container component="main" maxWidth="xs">
@@ -47,7 +107,7 @@ export default function SignIn() {
 				<Typography component="h1" variant="h5">
 					Inicio de sesión
 				</Typography>
-				<form className={classes.form} noValidate>
+				<form className={classes.form} noValidate onSubmit={handleSubmit}>
 					<TextField
 						variant="outlined"
 						margin="normal"
@@ -58,6 +118,7 @@ export default function SignIn() {
 						name="email"
 						autoComplete="email"
 						autoFocus
+						onChange={handleInputChange}
 					/>
 					<TextField
 						variant="outlined"
@@ -69,6 +130,7 @@ export default function SignIn() {
 						type="password"
 						id="password"
 						autoComplete="current-password"
+						onChange={handleInputChange}
 					/>
 					<FormControlLabel control={<Checkbox value="remember" color="primary" />} label="Recordarme" />
 					<Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
@@ -84,6 +146,7 @@ export default function SignIn() {
 					</Grid>
 				</form>
 			</div>
+			{confLog ? <Redirect to="/" /> : null}
 		</Container>
 	);
 }
