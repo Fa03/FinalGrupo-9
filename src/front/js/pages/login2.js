@@ -69,7 +69,7 @@ export default function SignIn() {
 				redirect: "follow"
 			};
 
-			fetch("https://3001-blue-koi-rys0mz5q.ws-us03.gitpod.io/api/login", requestOptions)
+			fetch("https://proyectosweetsbyfray.herokuapp.com/api/login", requestOptions)
 				.then(response => {
 					response.status === 200
 						? setTimeout(() => {

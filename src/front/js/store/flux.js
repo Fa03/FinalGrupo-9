@@ -23,7 +23,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			getUsers: async () => {
-				const URL = "https://3001-blue-koi-rys0mz5q.ws-us03.gitpod.io/api/users";
+				const URL = "https://proyectosweetsbyfray.herokuapp.com/api/users";
 				const CONFIG = {
 					method: "GET",
 					headers: {
