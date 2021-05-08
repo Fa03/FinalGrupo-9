@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
-import { Image, Container, Row, Col, Button, Badge } from "react-bootstrap";
+import { Image, Container, Row, Col, Button, Badge, Modal, Alert } from "react-bootstrap";
 import StorefrontIcon from "@material-ui/icons/Storefront";
 import index from "../../styles/index.scss";
 import { Context } from "../store/appContext";
@@ -8,6 +8,10 @@ import { ModalCarrito } from "./modalCarrito";
 
 export const Navbar = () => {
 	const { store, actions } = useContext(Context);
+	//modal
+	const [showModal, setShow] = useState(false);
+	const handleClose = () => setShow(false);
+	const handleShow = () => setShow(true);
 
 	return (
 		<Container fluid className="sticky-top position-fixed contNavBar">
@@ -35,10 +39,7 @@ export const Navbar = () => {
 								</Button>
 							</Link>
 
-							{/* <Link onClick={<ModalCarrito />} style={{ color: "white" }}> */}
-							{/* <Link onClick={ModalCarrito()} style={{ color: "white" }}> */}
-							{/* <Link onClick={alert("OnCLick Funciona")} style={{ color: "white" }}> */}
-							<Link style={{ color: "white" }}>
+							<Link onClick={store.carrito.length == 0 ? null : handleShow} style={{ color: "white" }}>
 								<StorefrontIcon
 									className="pl-1"
 									style={{ fontSize: 60, position: "relative" }}
@@ -52,9 +53,31 @@ export const Navbar = () => {
 							</Link>
 						</div>
 					</nav>
+
+					<Modal show={showModal} onHide={handleClose} className="modal right fade">
+						<Modal.Dialog>
+							<Modal.Header closeButton>
+								<Modal.Title>Productos en tu carrito</Modal.Title>
+							</Modal.Header>
+							<Modal.Body>
+								<ModalCarrito />
+							</Modal.Body>
+							<Modal.Footer>
+								<Link to="/products">
+									<Button variant="secondary" onClick={handleClose}>
+										Seguir Comprando
+									</Button>
+								</Link>
+								<Link to="/order">
+									<Button variant="primary" onClick={handleClose}>
+										Realizar Compra
+									</Button>
+								</Link>
+							</Modal.Footer>
+						</Modal.Dialog>
+					</Modal>
 				</Col>
 			</Row>
 		</Container>
 	);
 };
-//coment
