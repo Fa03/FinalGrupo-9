@@ -80,7 +80,6 @@ class Productos(db.Model):
 class Ordenes(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     usuario = db.Column(String(120), db.ForeignKey('user.email'))
-    user = db.relationship(User)
     monto = db.Column(db.String(80), unique=False, nullable=False)
     productos = db.Column(db.String(250), unique=False, nullable=False)
     dirección = db.Column(db.String(250), unique=False, nullable=False)
