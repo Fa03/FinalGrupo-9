@@ -1,17 +1,14 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
-import { Image, Container, Row, Col, Button } from "react-bootstrap";
-import DropdownButton from "react-bootstrap/DropdownButton";
+import { Image, Container, Row, Col, Button, Badge } from "react-bootstrap";
 import StorefrontIcon from "@material-ui/icons/Storefront";
 import index from "../../styles/index.scss";
+import { Context } from "../store/appContext";
+import { ModalCarrito } from "./modalCarrito";
 
 export const Navbar = () => {
-	const userData = JSON.parse(sessionStorage.getItem("user"));
+	const { store, actions } = useContext(Context);
 
-	const logout = e => {
-		sessionStorage.removeItem("user");
-		window.location.reload(false);
-	};
 	return (
 		<Container fluid className="sticky-top position-fixed contNavBar">
 			<Row>
@@ -32,24 +29,26 @@ export const Navbar = () => {
 							</p>
 						</div>
 						<div>
-							{userData ? (
-								<Link to="/">
-									<Button
-										type="button"
-										style={{ background: "#c3777b", border: "none" }}
-										onClick={logout}>
-										Cerrar Sesión
-									</Button>
-								</Link>
-							) : (
-								<Link to="/login">
-									<Button type="button" style={{ background: "#c3777b", border: "none" }}>
-										Ingresar / Registrarse
-									</Button>
-								</Link>
-							)}
-							<Link to="/order" style={{ color: "white" }}>
-								<StorefrontIcon className="pl-1" style={{ fontSize: 60 }} color="none" />
+							<Link to="/login">
+								<Button type="button" style={{ background: "#c3777b", border: "none" }}>
+									Ingresar / Registrarse
+								</Button>
+							</Link>
+
+							{/* <Link onClick={<ModalCarrito />} style={{ color: "white" }}> */}
+							{/* <Link onClick={ModalCarrito()} style={{ color: "white" }}> */}
+							{/* <Link onClick={alert("OnCLick Funciona")} style={{ color: "white" }}> */}
+							<Link style={{ color: "white" }}>
+								<StorefrontIcon
+									className="pl-1"
+									style={{ fontSize: 60, position: "relative" }}
+									color="none"
+								/>
+								{store.carrito.length == 0 ? null : (
+									<Badge pill variant="light" className="badgeConteo">
+										<strong>{store.carrito.length}</strong>
+									</Badge>
+								)}
 							</Link>
 						</div>
 					</nav>

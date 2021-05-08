@@ -12,7 +12,7 @@
 
 .textoLista, .cardTitle {
     font-family: 'Cabin Sketch', cursive;
-    font-size: 22px;
+    font-size: 18px;
     color: rgb(202, 107, 49)
 }
 
@@ -83,10 +83,40 @@
     width: 90px;
     height: 90px;
     overflow: hidden;
-    background-color: #e6bfc0;
-    border-radius: 50%;
+    background-color: red;
+    border-radius: 100%;
+}
+
+// >>>>>>>> 1-- el codigo de abajo es para que las flechas de control lateral del caruserl esten al lado y no sobre la imagen
+
+.carousel-control-prev, .carousel-control-next {
+    position: inherit;
+}
+
+.carousel {
+  margin: 1.5rem;
+}
+.carousel-inner {
+  height: auto;
+}
+
+.carousel-control-prev {
+  margin-left: -100px;
+}
+
+.carousel-control-next {
+  margin-right: -100px;
 }
 
 
+// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 1---
 
+.badgeConteo{
+    z-index: 20;
+    
+    position: absolute;
+
+}
+
+//>>>>>  MODAL LEFT <<<<<
 
