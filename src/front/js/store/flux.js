@@ -3,7 +3,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 		store: {
 			producto: [],
 			ordenes: [],
-			users: []
+			users: [],
+			carrito: [] // para probar agregar carritos >>ORDENES???<<<
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -35,6 +36,19 @@ const getState = ({ getStore, getActions, setStore }) => {
 				// console.log("DATA >>>", json);
 
 				setStore({ users: json });
+			},
+
+			setCarrito: producto => {
+				const store = getStore();
+				setStore({ carrito: [...store.carrito, producto] });
+				console.log(store.carrito);
+			},
+
+			quitarProducto: quitar => {
+				const carrito = getStore().carrito;
+				const indice = carrito.indexOf(quitar);
+				setStore({ carrito: [...carrito.slice(0, indice), ...carrito.slice(indice + 1)] });
+				console.log(carrito);
 			}
 		}
 	};
