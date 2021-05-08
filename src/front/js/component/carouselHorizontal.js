@@ -3,6 +3,8 @@ import { Container, Row, Col, Image, Card, Form, Button, Carousel, CardGroup, Pr
 import index from "../../styles/index.scss";
 import { Context } from "../store/appContext";
 import { Link, useParams } from "react-router-dom";
+import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
+import RemoveShoppingCartOutlinedIcon from "@material-ui/icons/RemoveShoppingCartOutlined";
 
 export const CarouselHorizontal = categoria => {
 	const { store, actions } = useContext(Context);
@@ -31,7 +33,7 @@ export const CarouselHorizontal = categoria => {
 		<Container style={{ background: "#d8d1d8" }}>
 			<Row className="pb-5">
 				<Col>
-					<Carousel fade interval={10000}>
+					<Carousel fade interval={9000}>
 						{prodPorCategoria.map((item, index) => {
 							return (
 								<Carousel.Item key={index}>
@@ -54,11 +56,22 @@ export const CarouselHorizontal = categoria => {
 														<small className="text-muted">
 															Precio &#162; {item2.precio}
 														</small>
-														<Button
-															style={{ background: "#c3777b", border: "none" }}
-															className="buttonComprar text-clor:red">
-															Comprar
-														</Button>
+														{store.carrito.includes(item2) ? (
+															<Button
+																onClick={() => actions.quitarProducto(item2)}
+																style={{ background: "#e0a8ab", border: "none" }}
+																className="buttonComprar text-clor:red">
+																Quitar <RemoveShoppingCartOutlinedIcon />
+															</Button>
+														) : (
+															<Button
+																onClick={() => actions.setCarrito(item2)}
+																style={{ background: "#c3777b", border: "none" }}
+																className="buttonComprar text-clor:red">
+																Agregar <AddShoppingCartIcon />
+															</Button>
+														)}
+														{console.log(store.carrito)}
 													</Card.Footer>
 												</Card>
 											);

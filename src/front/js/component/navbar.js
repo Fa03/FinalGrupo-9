@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
-import { Image, Container, Row, Col, Button } from "react-bootstrap";
+import { Image, Container, Row, Col, Button, Badge } from "react-bootstrap";
 import StorefrontIcon from "@material-ui/icons/Storefront";
 import index from "../../styles/index.scss";
+import { Context } from "../store/appContext";
+import { ModalCarrito } from "./modalCarrito";
 
 export const Navbar = () => {
+	const { store, actions } = useContext(Context);
+
 	return (
 		<Container fluid className="sticky-top position-fixed contNavBar">
 			<Row>
@@ -31,8 +35,17 @@ export const Navbar = () => {
 								</Button>
 							</Link>
 
-							<Link to="/order" style={{ color: "white" }}>
-								<StorefrontIcon className="pl-1" style={{ fontSize: 60 }} color="none" />
+							<Link onClick={<ModalCarrito />} style={{ color: "white" }}>
+								<StorefrontIcon
+									className="pl-1"
+									style={{ fontSize: 60, position: "relative" }}
+									color="none"
+								/>
+								{store.carrito.length == 0 ? null : (
+									<Badge pill variant="light" className="badgeConteo">
+										<strong>{store.carrito.length}</strong>
+									</Badge>
+								)}
 							</Link>
 						</div>
 					</nav>

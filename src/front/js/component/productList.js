@@ -29,9 +29,10 @@ const Productlist = () => {
 									<ListGroup.Item
 										className="d-flex justify-content-between align-items-center border-0 textoLista"
 										style={{ background: "#d8d1d8" }}>
-										{item.nombre}
+										<div>{item.nombre}</div>
 										<div className="contenedorImagen">
 											<Image className="imgLista img-responsive" src={item.imagen} />
+											{/* <p>Cuadro</p> */}
 										</div>
 									</ListGroup.Item>
 								</div>

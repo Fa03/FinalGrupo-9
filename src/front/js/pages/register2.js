@@ -157,7 +157,13 @@ export default function SignUp() {
 							/>
 						</Grid>
 					</Grid>
-					<Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
+					<Button
+						type="submit"
+						fullWidth
+						variant="contained"
+						color="primary"
+						className={classes.submit}
+						style={{ background: "#c3777b", border: "none" }}>
 						Registrarse
 					</Button>
 					<Grid container justify="flex-end">

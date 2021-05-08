@@ -101,7 +101,10 @@ export const RetrivePass = () => {
 						</Form.Group> */}
 						<Row>
 							<Col className="d-flex justify-content-center">
-								<Button variant="primary" type="submit">
+								<Button
+									variant="primary"
+									type="submit"
+									style={{ background: "#c3777b", border: "none" }}>
 									Enviar
 								</Button>
 							</Col>

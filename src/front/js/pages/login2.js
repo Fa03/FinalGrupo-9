@@ -37,7 +37,7 @@ export default function SignIn() {
 	const classes = useStyles();
 
 	return (
-		<Container component="main" maxWidth="xs">
+		<Container component="main" maxWidth="xs" className="mt-3 pt-3">
 			<br />
 			<CssBaseline />
 			<div className={classes.paper}>
@@ -71,7 +71,13 @@ export default function SignIn() {
 						autoComplete="current-password"
 					/>
 					<FormControlLabel control={<Checkbox value="remember" color="primary" />} label="Recordarme" />
-					<Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
+					<Button
+						type="submit"
+						fullWidth
+						variant="contained"
+						color="primary"
+						className={classes.submit}
+						style={{ background: "#c3777b", border: "none" }}>
 						Iniciar sesión
 					</Button>
 					<Grid container>

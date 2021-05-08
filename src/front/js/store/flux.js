@@ -2,10 +2,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			producto: [],
-			ordenes: []
+			ordenes: [],
+			carrito: [] // para probar agregar carritos >>ORDENES???<<<
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
+
 			getProducto: async () => {
 				const URL = "https://proyectosweetsbyfray.herokuapp.com/api/productos";
 				const CONFIG = {
@@ -19,7 +21,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				console.log("DATA >>>", json);
 
 				setStore({ producto: json });
-			}
+			},
 
 			// registerUser() {
 			// 	let myHeaders = new Headers();
@@ -37,6 +39,21 @@ const getState = ({ getStore, getActions, setStore }) => {
 			// 		.then(result => console.log(result))
 			// 		.catch(error => console.log("error", error));
 			// }
+
+			// >>>>>> de aque en adelante agregue FABIAN para crear orden
+
+			setCarrito: producto => {
+				const store = getStore();
+				setStore({ carrito: [...store.carrito, producto] });
+				console.log(store.carrito);
+			},
+
+			quitarProducto: quitar => {
+				const carrito = getStore().carrito;
+				const indice = carrito.indexOf(quitar);
+				setStore({ carrito: [...carrito.slice(0, indice), ...carrito.slice(indice + 1)] });
+				console.log(carrito);
+			}
 		}
 	};
 };
