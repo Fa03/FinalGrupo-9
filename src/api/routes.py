@@ -199,7 +199,7 @@ def create_payment():
     try:
         data = json.loads(request.data)
         intent = stripe.PaymentIntent.create(
-            amount=1500,
+            amount=100,
             currency="usd",
             payment_method_types=["card"],
         )

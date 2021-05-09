@@ -2,22 +2,20 @@ import React, { useState, useEffect, useContext } from "react";
 import { Container, Button, Modal, Form, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-export const SocialMedia = () => {
+export const ModalTerms = () => {
 	const [show, setShow] = useState(false);
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
 	return (
 		<Container>
 			<Row>
-				<Col>
-					<Form.Check type="checkbox" label="Acepto los términos y condiciones" />
-
-					<Link>
-						<label variant="primary" onClick={handleShow}>
-							Leer...
-						</label>
-					</Link>
-				</Col>
+				<Form.Check type="checkbox" />
+				<label variant="primary">Acepto los términos y condiciones</label>
+				<Link>
+					<label variant="primary" onClick={handleShow}>
+						Leer...
+					</label>
+				</Link>
 			</Row>
 
 			<Modal show={show} onHide={handleClose}>
@@ -48,7 +46,7 @@ export const SocialMedia = () => {
 					</p>
 				</Modal.Body>
 				<Modal.Footer>
-					<Button variant="secondary" onClick={handleClose}>
+					<Button variant="primary" onClick={handleClose}>
 						Close
 					</Button>
 				</Modal.Footer>

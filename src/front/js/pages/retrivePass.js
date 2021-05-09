@@ -40,7 +40,7 @@ export const RetrivePass = () => {
 				redirect: "follow"
 			};
 
-			fetch("https://3001-blue-koi-rys0mz5q.ws-us03.gitpod.io/api/newOrder/api/new_pass", {
+			fetch("https://3001-teal-puma-i7eyxgd6.ws-us04.gitpod.io/api/newOrder/api/new_pass", {
 				method: "PUT",
 				headers: myHeaders,
 				body: raw,
@@ -66,7 +66,7 @@ export const RetrivePass = () => {
 						src="https://img.taste.com.au/lmVc1ciM/taste/2018/03/apr-18_apple-blueberry-pie-with-cinnamon-pastry-3000x2000-136232-1.jpg"
 						thumbnail
 					/>
-					<Card>
+					{/* 	<Card>
 						<Card.Body>
 							<Card.Title>Card Title</Card.Title>
 							<Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle>
@@ -77,7 +77,7 @@ export const RetrivePass = () => {
 							<Card.Link href="#">Card Link</Card.Link>
 							<Card.Link href="#">Another Link</Card.Link>
 						</Card.Body>
-					</Card>
+					</Card> */}
 				</Col>
 
 				<Col xs={4}>
