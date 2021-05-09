@@ -43,7 +43,7 @@ export const Navbar = () => {
 									<Link style={{ color: "white", fontSize: 20, position: "relative" }} to="/myOrders">
 										<i className="far fa-user pr-3" style={{ fontSize: 40 }} />
 									</Link>
-									<Link to="/home">
+									<Link to="/">
 										<Button
 											type="button"
 											style={{ background: "#c3777b", border: "none" }}
@@ -54,7 +54,9 @@ export const Navbar = () => {
 								</div>
 							) : (
 								<Link to="/login">
-									<Button type="button" style={{ background: "#c3777b", border: "none" }}>
+									<Button
+										type="button"
+										style={{ background: "#c3777b", border: "none", position: "inline-block" }}>
 										Ingresar / Registrarse
 									</Button>
 								</Link>
@@ -63,7 +65,7 @@ export const Navbar = () => {
 							<Link onClick={store.carrito.length == 0 ? null : handleShow} style={{ color: "white" }}>
 								<StorefrontIcon
 									className="pl-1"
-									style={{ fontSize: 60, position: "relative" }}
+									style={{ fontSize: 60, position: "inline-block" }}
 									color="none"
 								/>
 								{store.carrito.length == 0 ? null : (

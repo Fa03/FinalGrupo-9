@@ -140,7 +140,7 @@ def userLogin():
         print(user)
         # create a new token with the user id inside
         access_token = create_access_token(identity=user.email)
-        return jsonify({ "token": access_token, "email": user.email, "nombre": user.nombre }), 200
+        return jsonify({ "token": access_token, "email": user.email, "nombre": user.nombre, "nacimiento": user.nacimiento, "apellidos": user.apellidos, "sexo": user.sexo, "telefono": user.telefono }), 200
 
 
 # RUTAS PROTEGIDAS
