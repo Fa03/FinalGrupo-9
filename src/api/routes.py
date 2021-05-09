@@ -158,6 +158,14 @@ def createOrder():
     email_query = User.query.filter_by(email=body["usuario"]).first()
     if email_query is None:
         return jsonify("Usuario no existe, inicie sesión para crear orden"), 401
+    if body["productos"] is None:
+        return jsonify("Agregue productos para procesar la orden"), 400
+    if body["monto"] is None:
+        return jsonify("Agregue productos para procesar la orden"), 400
+    if body["dirección"] is None:
+        return jsonify("Ingrese dirección de entrega"), 400
+    if body["metodo"] is None:
+        return jsonify("Seleccione un método de pago para procesar la order"), 400
 
     orden = Ordenes(
         usuario=body["usuario"],

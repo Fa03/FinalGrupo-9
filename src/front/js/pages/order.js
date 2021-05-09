@@ -12,19 +12,38 @@ export const Order = () => {
 	const { store, actions } = useContext(Context);
 	const [myUser, setMyUser] = useState("");
 	const [orderConf, setOrderConf] = useState(false);
+	const [cart, setCart] = useState("");
 	const [datos, setDatos] = useState({
 		usuario: "",
 		metodo: "",
 		productos: "Pastel cumpleaños, Mayonesa Keto Chipotle",
-		monto: "23500",
+		monto: "",
 		dirección: ""
 	});
 
 	useEffect(() => {
 		const userData = JSON.parse(sessionStorage.getItem("user"));
 		userData ? setMyUser(userData) : null;
+		store.carrito ? setCart(store.carrito) : null;
 	}, []);
 
+	// CALCULO MONTO TOTAL y SET DATOS MONTO Y PRODUCTOS
+	const cartInfo = () => {
+		let monto1 = 0;
+		let prods = [];
+		for (let i = 0; i < cart.length; i++) {
+			monto1 += cart[i].precio;
+			prods.push(cart[i].nombre);
+		}
+		// setDatos({
+		// 	...datos,
+		// 	monto: monto1,
+		// 	productos: prods
+		// });
+		return monto1;
+	};
+
+	// INPUT CHAGE Y LLENAR DATOS
 	const handleInputChange = event => {
 		setDatos({
 			...datos,
@@ -32,19 +51,20 @@ export const Order = () => {
 		});
 	};
 
+	// CREAR LA ORDEN
 	const handleSubmit = e => {
 		e.preventDefault();
 		if (datos.usuario == null) {
 			alert("Por favor confirme su correo.");
 		} else if (datos.usuario !== myUser.email) {
 			alert("Favor ingrese el mismo correo con el que creó su cuenta");
-		} else if (datos.dirección == null) {
+		} else if (datos.dirección == "") {
 			alert("Favor ingrese la dirección de entrega.");
-		} else if (datos.metodo == null) {
+		} else if (datos.metodo == "") {
 			alert("Seleccione un método de pago");
-		} else if (datos.monto == null) {
+		} else if (datos.monto == "") {
 			alert("No tiene productos seleccionados para hacer el pedido.");
-		} else if (datos.productos == null) {
+		} else if (datos.productos == "") {
 			alert("No tiene productos seleccionados para hacer el pedido.");
 		} else {
 			var myHeaders = new Headers();
@@ -59,12 +79,12 @@ export const Order = () => {
 				redirect: "follow"
 			};
 
-			fetch("https://3001-teal-puma-i7eyxgd6.ws-us04.gitpod.io/api/newOrder", requestOptions)
+			fetch("https://3001-blue-koi-rys0mz5q.ws-us03.gitpod.io/api/newOrder", requestOptions)
 				.then(response => {
 					response.status === 200
 						? setTimeout(() => {
 								setOrderConf(true);
-						  }, 4000)
+						  }, 2000)
 						: null;
 					return response.json();
 				})
@@ -78,7 +98,6 @@ export const Order = () => {
 			store.carrito = [];
 		}
 	};
-	console.log(datos);
 
 	return (
 		<Container fluid className="my-5 pt-5">
@@ -114,14 +133,6 @@ export const Order = () => {
 								<App />
 							</Col>
 						) : null}
-						{/* <Row>
-							//{" "}
-							<Col className="d-flex justify-content-center">
-								// <App />
-								//{" "}
-							</Col>
-							//{" "}
-						</Row> */}
 
 						<Col className="d-flex justify-content-center">
 							<Button variant="primary" type="submit">
@@ -161,6 +172,11 @@ export const Order = () => {
 								</Table>
 							</Card.Text>
 						</Card.Body>
+						<Card.Footer>
+							<small>
+								Monto de la compra: <b>¢{cartInfo()}</b>
+							</small>
+						</Card.Footer>
 					</Card>
 				</Col>
 			</Row>
