@@ -5,7 +5,6 @@ export const PrecioCompra =() => {
     const { store, actions } = useContext(Context);
 
     let precioPagar = 0;
-    
 
     return (
 
@@ -13,3 +12,7 @@ export const PrecioCompra =() => {
 
     )
 }
+
+
+
+
