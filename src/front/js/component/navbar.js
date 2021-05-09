@@ -44,7 +44,9 @@ export const Navbar = () => {
 								</Link>
 							) : (
 								<Link to="/login">
-									<Button type="button" style={{ background: "#c3777b", border: "none" }}>
+									<Button
+										type="button"
+										style={{ background: "#c3777b", border: "none", position: "inline-block" }}>
 										Ingresar / Registrarse
 									</Button>
 								</Link>
@@ -56,7 +58,7 @@ export const Navbar = () => {
 							<Link style={{ color: "white" }}>
 								<StorefrontIcon
 									className="pl-1"
-									style={{ fontSize: 60, position: "relative" }}
+									style={{ fontSize: 60, position: "inline-block" }}
 									color="none"
 								/>
 								{store.carrito.length == 0 ? null : (
