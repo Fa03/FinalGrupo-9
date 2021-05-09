@@ -8,11 +8,16 @@ import { ModalCarrito } from "./modalCarrito";
 
 export const Navbar = () => {
 	const { store, actions } = useContext(Context);
-	//modal
+
 	const [showModal, setShow] = useState(false);
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
 
+	const userData = JSON.parse(sessionStorage.getItem("user"));
+	const logout = e => {
+		sessionStorage.removeItem("user");
+		window.location.reload(false);
+	};
 	return (
 		<Container fluid className="sticky-top position-fixed contNavBar">
 			<Row>
@@ -32,12 +37,28 @@ export const Navbar = () => {
 								Sweets by Fray
 							</p>
 						</div>
-						<div>
-							<Link to="/login">
-								<Button type="button" style={{ background: "#c3777b", border: "none" }}>
-									Ingresar / Registrarse
-								</Button>
-							</Link>
+						<div className="d-flex flex-nowrap align-items-center">
+							{userData ? (
+								<div className="d-flex ">
+									<Link style={{ color: "white", fontSize: 20, position: "relative" }} to="/myOrders">
+										<i className="far fa-user pr-3" style={{ fontSize: 40 }} />
+									</Link>
+									<Link to="/home">
+										<Button
+											type="button"
+											style={{ background: "#c3777b", border: "none" }}
+											onClick={logout}>
+											Cerrar Sesión
+										</Button>
+									</Link>
+								</div>
+							) : (
+								<Link to="/login">
+									<Button type="button" style={{ background: "#c3777b", border: "none" }}>
+										Ingresar / Registrarse
+									</Button>
+								</Link>
+							)}
 
 							<Link onClick={store.carrito.length == 0 ? null : handleShow} style={{ color: "white" }}>
 								<StorefrontIcon

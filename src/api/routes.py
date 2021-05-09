@@ -6,6 +6,10 @@ from api.models import db, User, Productos, Categoria, Pago, Ordenes
 from api.utils import generate_sitemap, APIException
 import datetime
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
+import json
+import os
+import stripe
+stripe.api_key = "sk_test_51ImpXnCIKWo2E2PyhuzZh6aTtOiZDrc4Nw8C8NH0k5PZ7aAzZHWU7zCsDOD6rrKrAgVkHXRUfpcz7KtFTlZdLpd800qaV7kdYq"
 
 api = Blueprint('api', __name__)
 
@@ -187,5 +191,22 @@ def getOrder():
     todas = list(map(lambda x: x.serialize(), orden))
 
     return jsonify(todas), 200
+  
 
+# PAGO STRIPE
+@api.route('/create-payment-intent', methods=['POST'])
+def create_payment():
+    try:
+        data = json.loads(request.data)
+        intent = stripe.PaymentIntent.create(
+            amount=1500,
+            currency="usd",
+            payment_method_types=["card"],
+        )
+        print(intent['client_secret'])
+        return jsonify({
+          "clientSecret": intent["client_secret"]
+        }), 200
+    except Exception as e:
+        return jsonify(error=str(e)), 403
     

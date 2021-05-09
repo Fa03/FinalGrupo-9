@@ -91,7 +91,7 @@ export default function SignUp() {
 
 			var raw = JSON.stringify(datos);
 
-			fetch("https://proyectosweetsbyfray.herokuapp.com/api/register", {
+			fetch("https://3001-blue-donkey-capcu2gc.ws-us03.gitpod.io/api/register", {
 				method: "POST",
 				headers: myHeaders,
 				body: raw,

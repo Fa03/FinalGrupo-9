@@ -2,7 +2,7 @@ import React from "react";
 import { Container, Row, Col, Image, Card, Form, Button } from "react-bootstrap";
 import { Navbar } from "../component/navbar";
 import { Footer } from "../component/footer";
-
+import App from "../component/app";
 export const Order = () => {
 	return (
 		<Container className="my-5 pt-5">
@@ -26,6 +26,11 @@ export const Order = () => {
 						{/* <Form.Group controlId="formBasicCheckbox">
 							<Form.Check type="checkbox" label="Check me out" />
 						</Form.Group> */}
+						<Row>
+							<Col className="d-flex justify-content-center">
+								<App />
+							</Col>
+						</Row>
 						<Row>
 							<Col className="d-flex justify-content-center">
 								<Button variant="primary" type="submit">
