@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
-import { Image, Container, Row, Col, Button, Badge } from "react-bootstrap";
+import { Image, Container, Row, Col, Button, Badge, Modal, Alert } from "react-bootstrap";
 import StorefrontIcon from "@material-ui/icons/Storefront";
 import index from "../../styles/index.scss";
 import { Context } from "../store/appContext";
@@ -8,6 +8,11 @@ import { ModalCarrito } from "./modalCarrito";
 
 export const Navbar = () => {
 	const { store, actions } = useContext(Context);
+
+	const [showModal, setShow] = useState(false);
+	const handleClose = () => setShow(false);
+	const handleShow = () => setShow(true);
+
 	const userData = JSON.parse(sessionStorage.getItem("user"));
 	const logout = e => {
 		sessionStorage.removeItem("user");
@@ -32,16 +37,21 @@ export const Navbar = () => {
 								Sweets by Fray
 							</p>
 						</div>
-						<div>
+						<div className="d-flex flex-nowrap align-items-center">
 							{userData ? (
-								<Link to="/">
-									<Button
-										type="button"
-										style={{ background: "#c3777b", border: "none" }}
-										onClick={logout}>
-										Cerrar Sesión
-									</Button>
-								</Link>
+								<div className="d-flex ">
+									<Link style={{ color: "white", fontSize: 20, position: "relative" }} to="/myOrders">
+										<i className="far fa-user pr-3" style={{ fontSize: 40 }} />
+									</Link>
+									<Link to="/home">
+										<Button
+											type="button"
+											style={{ background: "#c3777b", border: "none" }}
+											onClick={logout}>
+											Cerrar Sesión
+										</Button>
+									</Link>
+								</div>
 							) : (
 								<Link to="/login">
 									<Button type="button" style={{ background: "#c3777b", border: "none" }}>
@@ -50,10 +60,7 @@ export const Navbar = () => {
 								</Link>
 							)}
 
-							{/* <Link onClick={<ModalCarrito />} style={{ color: "white" }}> */}
-							{/* <Link onClick={ModalCarrito()} style={{ color: "white" }}> */}
-							{/* <Link onClick={alert("OnCLick Funciona")} style={{ color: "white" }}> */}
-							<Link style={{ color: "white" }}>
+							<Link onClick={store.carrito.length == 0 ? null : handleShow} style={{ color: "white" }}>
 								<StorefrontIcon
 									className="pl-1"
 									style={{ fontSize: 60, position: "relative" }}
@@ -67,9 +74,31 @@ export const Navbar = () => {
 							</Link>
 						</div>
 					</nav>
+
+					<Modal show={showModal} onHide={handleClose} className="modal right fade">
+						<Modal.Dialog>
+							<Modal.Header closeButton>
+								<Modal.Title>Productos en tu carrito</Modal.Title>
+							</Modal.Header>
+							<Modal.Body>
+								<ModalCarrito />
+							</Modal.Body>
+							<Modal.Footer>
+								<Link to="/products">
+									<Button variant="secondary" onClick={handleClose}>
+										Seguir Comprando
+									</Button>
+								</Link>
+								<Link to="/order">
+									<Button variant="primary" onClick={handleClose}>
+										Realizar Compra
+									</Button>
+								</Link>
+							</Modal.Footer>
+						</Modal.Dialog>
+					</Modal>
 				</Col>
 			</Row>
 		</Container>
 	);
 };
-//coment
