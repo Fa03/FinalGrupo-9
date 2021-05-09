@@ -59,7 +59,7 @@ export const Order = () => {
 				redirect: "follow"
 			};
 
-			fetch("https://3001-blue-koi-rys0mz5q.ws-us03.gitpod.io/api/newOrder", requestOptions)
+			fetch("https://3001-teal-puma-i7eyxgd6.ws-us04.gitpod.io/api/newOrder", requestOptions)
 				.then(response => {
 					response.status === 200
 						? setTimeout(() => {
@@ -81,7 +81,7 @@ export const Order = () => {
 	console.log(datos);
 
 	return (
-		<Container className="my-5 pt-5">
+		<Container fluid className="my-5 pt-5">
 			<Row className="d-flex align-items-center justify-content-around">
 				<Col xs={4}>
 					<Form onSubmit={handleSubmit}>
@@ -110,11 +110,9 @@ export const Order = () => {
 							<Form.Check type="checkbox" label="Check me out" />
 						</Form.Group> */}
 						{datos.metodo == "Tarjeta" ? (
-							<Row>
-								<Col className="d-flex justify-content-center">
-									<App />
-								</Col>
-							</Row>
+							<Col className="d-flex justify-content-center">
+								<App />
+							</Col>
 						) : null}
 						{/* <Row>
 							//{" "}
@@ -124,13 +122,12 @@ export const Order = () => {
 							</Col>
 							//{" "}
 						</Row> */}
-						<Row>
-							<Col className="d-flex justify-content-center">
-								<Button variant="primary" type="submit">
-									Hacer Pedido
-								</Button>
-							</Col>
-						</Row>
+
+						<Col className="d-flex justify-content-center">
+							<Button variant="primary" type="submit">
+								Hacer Pedido
+							</Button>
+						</Col>
 					</Form>
 				</Col>
 
@@ -163,8 +160,6 @@ export const Order = () => {
 									</tbody>
 								</Table>
 							</Card.Text>
-							<Card.Link href="#">Card Link</Card.Link>
-							<Card.Link href="#">Another Link</Card.Link>
 						</Card.Body>
 					</Card>
 				</Col>
