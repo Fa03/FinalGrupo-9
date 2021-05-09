@@ -6,7 +6,7 @@ export const PrecioCompra =() => {
 
     let precioPagar = 0;
 
-    return (
+    return ("nada"
 
         
 

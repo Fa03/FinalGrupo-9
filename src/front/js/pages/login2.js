@@ -69,7 +69,7 @@ export default function SignIn() {
 				redirect: "follow"
 			};
 
-			fetch("https://3001-blue-donkey-capcu2gc.ws-us03.gitpod.io/api/login", requestOptions)
+			fetch("https://3001-blue-koi-rys0mz5q.ws-us03.gitpod.io/api/login", requestOptions)
 				.then(response => {
 					response.status === 200
 						? setTimeout(() => {
@@ -86,7 +86,11 @@ export default function SignIn() {
 							JSON.stringify({
 								token: data.token,
 								email: data.email,
-								nombre: data.nombre
+								nombre: data.nombre,
+								apellidos: data.apellidos,
+								nacimiento: data.nacimiento,
+								sexo: data.sexo,
+								telefono: data.telefono
 							})
 						);
 						// sessionStorage.setItem();

@@ -3,10 +3,12 @@ import { Context } from "../store/appContext";
 import { Container, Row, Col, Image, Card, Form, Button } from "react-bootstrap";
 import { Navbar } from "../component/navbar";
 import { Footer } from "../component/footer";
+import Table from "react-bootstrap/Table";
 
 export const MyOrders = () => {
 	const { store, actions } = useContext(Context);
 	const [myUser, setMyUser] = useState("");
+	const [orders, setOrders] = useState();
 
 	const ordenes = email => {
 		var myHeaders = new Headers();
@@ -23,35 +25,81 @@ export const MyOrders = () => {
 			redirect: "follow"
 		};
 
-		fetch("https://proyectosweetsbyfray.herokuapp.com/api/myOrders", requestOptions)
+		fetch("https://3001-blue-koi-rys0mz5q.ws-us03.gitpod.io/api/myOrders", requestOptions)
 			.then(response => response.json())
-			.then(data => console.log("<<DATA>> ", data))
+			.then(data => setOrders(data))
 			.catch(error => console.log("error", error));
 	};
 
 	useEffect(() => {
 		const userData = JSON.parse(sessionStorage.getItem("user"));
 
-		setMyUser(userData.nombre);
+		setMyUser(userData);
 
 		ordenes(userData.email);
 	}, []);
 
-	// let userToken = sessionStorage.getItem("token");
-
-	// let filterUser = store.users.filter(({ email: userEmail }, i) => {
-	// 	return store.users[i];
-	// });
-	// // console.log(filterUser);
-	// const myUser = filterUser[0].nombre;
-	// console.log(myUser);
-
 	return (
 		<Container className="my-5 pt-5">
 			<Row className="d-flex align-items-center justify-content-around">
-				<Col xs={4}>{"Hola " + myUser}</Col>
+				<Col xs={6} className="w-75">
+					<h2>{"¡Hola " + myUser.nombre + " Bienvenido!"}</h2>
+					<h5> {"Tu información:"} </h5>
 
-				<Col xs={3}>Y esto otro</Col>
+					<Table striped bordered hover>
+						<thead>
+							<tr>
+								<th>Nombre</th>
+								<th>Apellidos</th>
+								<th>Fecha de Nacimiento</th>
+								<th>Sexo</th>
+								<th>Email</th>
+								<th>Teléfono</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>{myUser.nombre}</td>
+								<td>{myUser.apellidos}</td>
+								<td>{myUser.nacimiento}</td>
+								<td>{myUser.sexo}</td>
+								<td>{myUser.email}</td>
+								<td>{myUser.telefono}</td>
+							</tr>
+						</tbody>
+					</Table>
+				</Col>
+			</Row>
+			<Row className="d-flex align-items-left justify-content-around">
+				<Col xs={3}>
+					<h3>Tus Órdenes:</h3>
+					{orders ? (
+						<Table striped bordered hover>
+							<thead>
+								<tr>
+									<th>Productos</th>
+									<th>Monto</th>
+									<th>Método</th>
+									<th>Dirección</th>
+								</tr>
+							</thead>
+							<tbody>
+								{orders.map((item, i) => {
+									return (
+										<tr key={i}>
+											<td>{item.productos}</td>
+											<td>{item.monto}</td>
+											<td>{item.metodo}</td>
+											<td>{item.dirección}</td>
+										</tr>
+									);
+								})}
+							</tbody>
+						</Table>
+					) : (
+						<div>{<i className="fas fa-heart-broken" /> + "No tienes ninguna orden creada aún"}</div>
+					)}
+				</Col>
 			</Row>
 		</Container>
 	);
