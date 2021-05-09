@@ -3,7 +3,7 @@ import { Context } from "../store/appContext";
 import { Container, Row, Col, Image, Card, Form, Button } from "react-bootstrap";
 import { Navbar } from "../component/navbar";
 import { Footer } from "../component/footer";
-import ListGroup from "react-bootstrap/ListGroup";
+import Table from "react-bootstrap/Table";
 
 export const MyOrders = () => {
 	const { store, actions } = useContext(Context);
@@ -25,9 +25,9 @@ export const MyOrders = () => {
 			redirect: "follow"
 		};
 
-		fetch("https://proyectosweetsbyfray.herokuapp.com/api/myOrders", requestOptions)
+		fetch("https://3001-blue-koi-rys0mz5q.ws-us03.gitpod.io/api/myOrders", requestOptions)
 			.then(response => response.json())
-			.then(data => console.log("<<Lista Ordenes>>", data))
+			.then(data => setOrders(data))
 			.catch(error => console.log("error", error));
 	};
 
@@ -45,37 +45,60 @@ export const MyOrders = () => {
 				<Col xs={6} className="w-75">
 					<h2>{"¡Hola " + myUser.nombre + " Bienvenido!"}</h2>
 					<h5> {"Tu información:"} </h5>
-					<ListGroup horizontal>
-						<ListGroup.Item className="mw-100">{myUser.nombre}</ListGroup.Item>
-						<ListGroup.Item>{myUser.apellidos}</ListGroup.Item>
-					</ListGroup>
-					<ListGroup horizontal>
-						<ListGroup.Item>{myUser.nacimiento}</ListGroup.Item>
-						<ListGroup.Item>{myUser.sexo}</ListGroup.Item>
-					</ListGroup>
-					<ListGroup horizontal>
-						<ListGroup.Item>{myUser.email}</ListGroup.Item>
-						<ListGroup.Item>{myUser.telefono}</ListGroup.Item>
-					</ListGroup>
+
+					<Table striped bordered hover>
+						<thead>
+							<tr>
+								<th>Nombre</th>
+								<th>Apellidos</th>
+								<th>Fecha de Nacimiento</th>
+								<th>Sexo</th>
+								<th>Email</th>
+								<th>Teléfono</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>{myUser.nombre}</td>
+								<td>{myUser.apellidos}</td>
+								<td>{myUser.nacimiento}</td>
+								<td>{myUser.sexo}</td>
+								<td>{myUser.email}</td>
+								<td>{myUser.telefono}</td>
+							</tr>
+						</tbody>
+					</Table>
 				</Col>
 			</Row>
 			<Row className="d-flex align-items-left justify-content-around">
 				<Col xs={3}>
 					<h3>Tus Órdenes:</h3>
-					{orders
-						? orders.map((item, i) => {
-								return (
-									<div key={i}>
-										<ul>
-											<li>{orders.productos}</li>
-											<li>{orders.monto}</li>
-											<li>{orders.metodo}</li>
-											<li>{orders.dirección}</li>
-										</ul>
-									</div>
-								);
-						  })
-						: "No tienes ninguna order aún."}
+					{orders ? (
+						<Table striped bordered hover>
+							<thead>
+								<tr>
+									<th>Productos</th>
+									<th>Monto</th>
+									<th>Método</th>
+									<th>Dirección</th>
+								</tr>
+							</thead>
+							<tbody>
+								{orders.map((item, i) => {
+									return (
+										<tr key={i}>
+											<td>{item.productos}</td>
+											<td>{item.monto}</td>
+											<td>{item.metodo}</td>
+											<td>{item.dirección}</td>
+										</tr>
+									);
+								})}
+							</tbody>
+						</Table>
+					) : (
+						<div>{<i className="fas fa-heart-broken" /> + "No tienes ninguna orden creada aún"}</div>
+					)}
 				</Col>
 			</Row>
 		</Container>

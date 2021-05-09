@@ -91,7 +91,7 @@ export default function SignUp() {
 
 			var raw = JSON.stringify(datos);
 
-			fetch("https://3001-rose-ermine-0qw9q0pn.ws-us03.gitpod.io/api/register", {
+			fetch("https://3001-blue-koi-rys0mz5q.ws-us03.gitpod.io/api/register", {
 				method: "POST",
 				headers: myHeaders,
 				body: raw,
