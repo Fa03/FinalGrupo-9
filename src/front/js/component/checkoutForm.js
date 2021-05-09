@@ -78,7 +78,7 @@ export default function CheckoutForm() {
 		<form id="payment-form" onSubmit={handleSubmit}>
 			<CardElement id="card-element" options={cardStyle} onChange={handleChange} />
 			<button disabled={processing || disabled || succeeded} id="submit">
-				<span id="button-text">{processing ? <div className="spinner" id="spinner" /> : "Pay now"}</span>
+				<span id="button-text">{processing ? <div className="spinner" id="spinner" /> : "Pagar"}</span>
 			</button>
 			{/* Show any error that happens when processing the payment */}
 			{error && (

@@ -41,14 +41,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 			setCarrito: producto => {
 				const store = getStore();
 				setStore({ carrito: [...store.carrito, producto] });
-				console.log(store.carrito);
+				// console.log(store.carrito);
 			},
 
 			quitarProducto: quitar => {
 				const carrito = getStore().carrito;
 				const indice = carrito.indexOf(quitar);
 				setStore({ carrito: [...carrito.slice(0, indice), ...carrito.slice(indice + 1)] });
-				console.log(carrito);
+				// console.log(carrito);
 			}
 		}
 	};
