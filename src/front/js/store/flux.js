@@ -23,20 +23,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ producto: json });
 			},
 
-			getUsers: async () => {
-				const URL = "https://proyectosweetsbyfray.herokuapp.com/api/users";
-				const CONFIG = {
-					method: "GET",
-					headers: {
-						"Content-type": "application/json"
-					}
-				};
-				const response = await fetch(URL, CONFIG);
-				const json = await response.json();
-				// console.log("DATA >>>", json);
+			// getUsers: async () => {
+			// 	const URL = "https://proyectosweetsbyfray.herokuapp.com/api/users";
+			// 	const CONFIG = {
+			// 		method: "GET",
+			// 		headers: {
+			// 			"Content-type": "application/json"
+			// 		}
+			// 	};
+			// 	const response = await fetch(URL, CONFIG);
+			// 	const json = await response.json();
+			// 	// console.log("DATA >>>", json);
 
-				setStore({ users: json });
-			},
+			// 	setStore({ users: json });
+			// },
 
 			setCarrito: producto => {
 				const store = getStore();
