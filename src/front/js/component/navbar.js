@@ -13,6 +13,10 @@ export const Navbar = () => {
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
 
+	const [showModal2, setShow2] = useState(false);
+	const handleClose2 = () => setShow2(false);
+	const handleShow2 = () => setShow2(true);
+
 	const userData = JSON.parse(sessionStorage.getItem("user"));
 	const logout = e => {
 		sessionStorage.removeItem("user");
@@ -32,7 +36,7 @@ export const Navbar = () => {
 								style={{ border: "5px solid white" }}
 							/>
 						</Link>
-						<div className="ml-5 pl-5">
+						<div className="ml-5 pl-5 d-none d-md-flex">
 							<p className="h1 tituloNavBar" style={{ color: "#de1f55" }}>
 								Sweets by Fray
 							</p>
@@ -62,7 +66,9 @@ export const Navbar = () => {
 								</Link>
 							)}
 
-							<Link onClick={store.carrito.length == 0 ? null : handleShow} style={{ color: "white" }}>
+							<Link
+								onClick={store.carrito.length == 0 ? handleShow2 : handleShow}
+								style={{ color: "white" }}>
 								<StorefrontIcon
 									className="pl-1"
 									style={{ fontSize: 60, position: "inline-block" }}
@@ -76,6 +82,31 @@ export const Navbar = () => {
 							</Link>
 						</div>
 					</nav>
+
+					<Modal show={showModal2} onHide={handleClose2} className="modal modalCorto">
+						<Modal.Dialog className="border-0" style={{ width: "450px" }}>
+							<Modal.Header closeButton className="border-0">
+								<Modal.Title>Carrito Vacío</Modal.Title>
+							</Modal.Header>
+							<Modal.Body>
+								<small>
+									<p style={{ fontSize: "18px" }}>Aún no has agregado productos a tu lista.</p>
+								</small>
+							</Modal.Body>
+							<Modal.Footer>
+								<Link to="/products">
+									<Button
+										variant="secondary"
+										onClick={handleClose2}
+										style={{ background: "#c3777b", border: "none" }}>
+										Ver Productos
+									</Button>
+								</Link>
+							</Modal.Footer>
+						</Modal.Dialog>
+					</Modal>
+
+					{/* modal orgiginal esta de esta linea para Abajo */}
 
 					<Modal show={showModal} onHide={handleClose} className="modal right fade">
 						<Modal.Dialog>

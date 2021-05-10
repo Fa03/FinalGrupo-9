@@ -40,7 +40,7 @@ export const MyOrders = () => {
 	}, []);
 
 	return (
-		<Container fluid className="my-5 pt-5">
+		<Container fluid className="my-5 pt-5" style={{ background: "#d8d1d8" }}>
 			<Row className="d-flex align-items-center justify-content-around">
 				<Col xs={6} className="w-75">
 					<h2>{"¡Hola " + myUser.nombre + " Bienvenido!"}</h2>
