@@ -2,7 +2,7 @@ import React from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "./checkoutForm";
-//import "../../styles/app.css";
+import "../../styles/appPay.css";
 
 // Make sure to call loadStripe outside of a component’s render to avoid
 // recreating the Stripe object on every render.
@@ -13,7 +13,7 @@ const promise = loadStripe(
 
 export default function App() {
 	return (
-		<div className="app">
+		<div className="appPay">
 			<Elements stripe={promise}>
 				<CheckoutForm />
 			</Elements>

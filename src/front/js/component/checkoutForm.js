@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
-
+import { ProgressBar, Col } from "react-bootstrap";
 export default function CheckoutForm() {
 	const [succeeded, setSucceeded] = useState(false);
 	const [error, setError] = useState(null);
@@ -12,7 +12,7 @@ export default function CheckoutForm() {
 
 	useEffect(() => {
 		// Create PaymentIntent as soon as the page loads
-		fetch("https://3001-rose-ermine-0qw9q0pn.ws-us03.gitpod.io/api/create-payment-intent", {
+		fetch("https://3001-teal-puma-i7eyxgd6.ws-us04.gitpod.io/api/create-payment-intent", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json"
@@ -78,7 +78,7 @@ export default function CheckoutForm() {
 		<form id="payment-form" onSubmit={handleSubmit}>
 			<CardElement id="card-element" options={cardStyle} onChange={handleChange} />
 			<button disabled={processing || disabled || succeeded} id="submit">
-				<span id="button-text">{processing ? <div className="spinner" id="spinner" /> : "Pay now"}</span>
+				<span id="button-text">{processing ? <div className="spinner" id="spinner" /> : "Pagar"}</span>
 			</button>
 			{/* Show any error that happens when processing the payment */}
 			{error && (
@@ -88,9 +88,8 @@ export default function CheckoutForm() {
 			)}
 			{/* Show a success message upon completion */}
 			<p className={succeeded ? "result-message" : "result-message hidden"}>
-				Payment succeeded, see the result in your
-				<a href={`https://dashboard.stripe.com/test/payments`}> Stripe dashboard.</a> Refresh the page to pay
-				again.
+				Pago realizado satisfactoriamente, redirecionando a tus ordenes.
+				<ProgressBar animated now={100} />
 			</p>
 		</form>
 	);
