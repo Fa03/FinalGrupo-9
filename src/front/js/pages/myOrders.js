@@ -25,7 +25,7 @@ export const MyOrders = () => {
 			redirect: "follow"
 		};
 
-		fetch("https://3001-blue-koi-rys0mz5q.ws-us03.gitpod.io/api/myOrders", requestOptions)
+		fetch("https://proyectosweetsbyfray.herokuapp.com/api/myOrders", requestOptions)
 			.then(response => response.json())
 			.then(data => setOrders(data))
 			.catch(error => console.log("error", error));
