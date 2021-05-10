@@ -79,7 +79,7 @@ export const Order = () => {
 				redirect: "follow"
 			};
 
-			fetch("https://3001-blue-koi-rys0mz5q.ws-us03.gitpod.io/api/newOrder", requestOptions)
+			fetch("https://proyectosweetsbyfray.herokuapp.com/api/newOrder", requestOptions)
 				.then(response => {
 					response.status === 200
 						? setTimeout(() => {
