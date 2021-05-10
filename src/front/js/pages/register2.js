@@ -110,7 +110,7 @@ export default function SignUp() {
 		}
 	};
 	return (
-		<Container component="main" maxWidth="sm">
+		<Container component="main" maxWidth="sm" style={{ background: "#d8d1d8" }}>
 			<br />
 			<CssBaseline />
 			<div className={classes.paper}>

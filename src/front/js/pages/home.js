@@ -16,11 +16,15 @@ export const Home = () => {
 	return (
 		<Container fluid className="mt-5 pt-5" style={{ background: "#d8d1d8" }}>
 			<Row className="d-flex align-items-center">
-				<Col>
+				<Col className="d-none d-md-flex">
 					<CompanyCard />
 				</Col>
-				<Col>
-					<Image src="https://www.vainillamolina.com/uploads/images/VM_Blo77.png" roundedCircle />
+				<Col className="col-6 d-flex justify-content-center pl-5 d-none d-md-flex">
+					<Image
+						className="img-fluid"
+						src="https://www.vainillamolina.com/uploads/images/VM_Blo77.png"
+						roundedCircle
+					/>
 				</Col>
 				<Col>
 					<Productlist />

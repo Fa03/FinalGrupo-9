@@ -129,10 +129,10 @@
         margin: auto;
         width: 400px;
 		height: 95%;
-		// -webkit-transform: translate3d(0%, 0, 0);
-		//     -ms-transform: translate3d(0%, 0, 0);
-		//      -o-transform: translate3d(0%, 0, 0);
-		//         transform: translate3d(0%, 0, 0);
+		-webkit-transform: translate3d(0%, 0, 0);
+		    -ms-transform: translate3d(0%, 0, 0);
+		     -o-transform: translate3d(0%, 0, 0);
+		        transform: translate3d(0%, 0, 0);
 	}
 
 	.modal.right .modal-content {
@@ -142,7 +142,20 @@
 	
 	.modal.right .modal-body {
 		padding: 15px 15px 80px;
-	}
+    }
+    
+    .modalCorto {
+        position: fixed;
+        margin: auto;
+        width: 700px;
+        height: 45%;
+        right: 10px;
+        border: none;
+		-webkit-transition: opacity 0.3s linear, right 0.3s ease-out;
+		   -moz-transition: opacity 0.3s linear, right 0.3s ease-out;
+		     -o-transition: opacity 0.3s linear, right 0.3s ease-out;
+		        transition: opacity 0.3s linear, right 0.3s ease-out;
+    }
         
 /*Right*/
 	.modal.right.fade .modal-dialog {
@@ -225,4 +238,8 @@
 }
 
 //>>>> NUMERIC INPUT
+
+.removeIcon:hover {    //hover para la X de eliminar en MODAL de carrito
+    color: #b0b5bb;
+}
 

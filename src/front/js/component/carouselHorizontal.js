@@ -29,6 +29,14 @@ export const CarouselHorizontal = categoria => {
 		prodPorCategoria.push(grupo);
 	}
 
+	const buscarProducto = producto => {
+		let encontrado = false;
+		store.carrito.map((item, indice) => {
+			if (item[0] == producto) encontrado = true;
+		});
+		return encontrado;
+	};
+
 	return (
 		<Container style={{ background: "#d8d1d8" }}>
 			<Row className="pb-5">
@@ -56,7 +64,7 @@ export const CarouselHorizontal = categoria => {
 														<small className="text-muted">
 															Precio &#162; {item2.precio}
 														</small>
-														{store.carrito.includes(item2) ? (
+														{buscarProducto(item2) ? (
 															<Button
 																onClick={() => actions.quitarProducto(item2)}
 																style={{ background: "#e0a8ab", border: "none" }}
@@ -65,7 +73,7 @@ export const CarouselHorizontal = categoria => {
 															</Button>
 														) : (
 															<Button
-																onClick={() => actions.setCarrito(item2)}
+																onClick={() => actions.setCarrito(item2, 1)}
 																style={{ background: "#c3777b", border: "none" }}
 																className="buttonComprar text-clor:red">
 																Agregar <AddShoppingCartIcon />

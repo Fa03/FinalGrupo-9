@@ -32,8 +32,8 @@ export const Order = () => {
 		let monto1 = 0;
 		let prods = [];
 		for (let i = 0; i < cart.length; i++) {
-			monto1 += cart[i].precio;
-			prods.push(cart[i].nombre);
+			monto1 += cart[i][0].precio * cart[i][1];
+			prods.push(cart[i][0].nombre);
 		}
 		// setDatos({
 		// 	...datos,
@@ -100,7 +100,7 @@ export const Order = () => {
 	};
 
 	return (
-		<Container fluid className="my-5 pt-5">
+		<Container fluid className="my-5 pt-5" style={{ background: "#d8d1d8" }}>
 			<Row className="d-flex align-items-center justify-content-around">
 				<Col xs={4}>
 					<Form onSubmit={handleSubmit}>
@@ -157,14 +157,16 @@ export const Order = () => {
 										<tr>
 											<th>Producto</th>
 											<th>Precio</th>
+											<th>Cantidad</th>
 										</tr>
 									</thead>
 									<tbody>
 										{store.carrito.map((item, i) => {
 											return (
 												<tr key={i}>
-													<td>{item.nombre}</td>
-													<td>{item.precio}</td>
+													<td>{item[0].nombre}</td>
+													<td>{item[0].precio * item[1]}</td>
+													<td>{item[1]}</td>
 												</tr>
 											);
 										})}
