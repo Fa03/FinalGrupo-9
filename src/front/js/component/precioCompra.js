@@ -9,6 +9,6 @@ export const PrecioCompra = () => {
 	store.carrito.map((item, index) => {
 		precioPagar = precioPagar + item[0].precio * item[1];
 	});
-	console.log(precioPagar);
+	// console.log(precioPagar);
 	return precioPagar;
 };

@@ -68,8 +68,11 @@ export default function SignIn() {
 				redirect: "follow"
 			};
 
-			fetch("https://proyectosweetsbyfray.herokuapp.com/api/login", requestOptions)
+			fetch("https://3001-blue-koi-rys0mz5q.ws-us04.gitpod.io/api/login", requestOptions)
 				.then(response => {
+					if (!response.ok) {
+						throw Error(response.json());
+					}
 					response.status === 200
 						? setTimeout(() => {
 								setConfLog(true);
@@ -78,7 +81,6 @@ export default function SignIn() {
 					return response.json();
 				})
 				.then(data => {
-					console.log(data);
 					if (typeof Storage !== "undefined") {
 						sessionStorage.setItem(
 							"user",
@@ -92,10 +94,9 @@ export default function SignIn() {
 								telefono: data.telefono
 							})
 						);
-						// sessionStorage.setItem();
 					}
 				})
-				.catch(error => console.log("error", error));
+				.catch(err => console.log("error", error));
 		}
 	};
 
