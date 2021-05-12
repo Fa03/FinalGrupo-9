@@ -79,7 +79,7 @@ export const CarouselHorizontal = categoria => {
 																Agregar <AddShoppingCartIcon />
 															</Button>
 														)}
-														{console.log(store.carrito)}
+														{/* {console.log(store.carrito)} */}
 													</Card.Footer>
 												</Card>
 											);

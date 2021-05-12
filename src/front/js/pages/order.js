@@ -7,6 +7,7 @@ import { Footer } from "../component/footer";
 import App from "../component/app";
 import Table from "react-bootstrap/Table";
 import Alert from "react-bootstrap/Alert";
+import { PrecioCompra } from "/workspace/FinalGrupo-9/src/front/js/component/precioCompra.js";
 
 export const Order = () => {
 	const { store, actions } = useContext(Context);
@@ -16,7 +17,7 @@ export const Order = () => {
 	const [datos, setDatos] = useState({
 		usuario: "",
 		metodo: "",
-		productos: "Pastel cumpleaños, Mayonesa Keto Chipotle",
+		productos: [],
 		monto: "",
 		dirección: ""
 	});
@@ -24,23 +25,28 @@ export const Order = () => {
 	useEffect(() => {
 		const userData = JSON.parse(sessionStorage.getItem("user"));
 		userData ? setMyUser(userData) : null;
-		store.carrito ? setCart(store.carrito) : null;
+		// store.carrito ? setCart(store.carrito) : null;
+		cartInfo();
 	}, []);
 
 	// CALCULO MONTO TOTAL y SET DATOS MONTO Y PRODUCTOS
 	const cartInfo = () => {
 		let monto1 = 0;
 		let prods = [];
-		for (let i = 0; i < cart.length; i++) {
-			monto1 += cart[i][0].precio * cart[i][1];
-			prods.push(cart[i][0].nombre);
+		for (let i = 0; i < store.carrito.length; i++) {
+			monto1 = monto1 + store.carrito[i][0].precio * store.carrito[i][1];
+			prods.push(store.carrito[i][0].nombre);
 		}
-		// setDatos({
-		// 	...datos,
-		// 	monto: monto1,
-		// 	productos: prods
-		// });
-		return monto1;
+		let newDatos = {
+			usuario: datos.usuario,
+			metodo: datos.metodo,
+			productos: prods,
+			monto: monto1,
+			dirección: datos.dirección
+		};
+
+		setDatos(newDatos);
+		console.log(datos);
 	};
 
 	// INPUT CHAGE Y LLENAR DATOS
@@ -54,7 +60,9 @@ export const Order = () => {
 	// CREAR LA ORDEN
 	const handleSubmit = e => {
 		e.preventDefault();
-		if (datos.usuario == null) {
+		if (myUser.token == null) {
+			alert("Por favor inicia sesión para completar tu order");
+		} else if (datos.usuario == null) {
 			alert("Por favor confirme su correo.");
 		} else if (datos.usuario !== myUser.email) {
 			alert("Favor ingrese el mismo correo con el que creó su cuenta");
@@ -79,7 +87,7 @@ export const Order = () => {
 				redirect: "follow"
 			};
 
-			fetch("https://proyectosweetsbyfray.herokuapp.com/api/newOrder", requestOptions)
+			fetch("https://3001-blue-koi-rys0mz5q.ws-us04.gitpod.io/api/newOrder", requestOptions)
 				.then(response => {
 					response.status === 200
 						? setTimeout(() => {
@@ -88,9 +96,7 @@ export const Order = () => {
 						: null;
 					return response.json();
 				})
-				// .then(result => {
-				// 	<Alert variant="success">Ordea creada satisfactoriamente... ¡Muchas Gracias!</Alert>;
-				// })
+
 				.catch(error => {
 					console.log("error", error);
 					alert("No se completó la orden, favor contactarnos directamente");
@@ -121,13 +127,6 @@ export const Order = () => {
 								<option>SINPE Móvil</option>
 							</Form.Control>
 						</Form.Group>
-						{/* <Form.Group controlId="formBasicPassword">
-							<Form.Label>Forma de Pago</Form.Label>
-							<Form.Control type="password" placeholder="Tarjeta/SINPE" />
-						</Form.Group> */}
-						{/* <Form.Group controlId="formBasicCheckbox">
-							<Form.Check type="checkbox" label="Check me out" />
-						</Form.Group> */}
 						{datos.metodo == "Tarjeta" ? (
 							<Col className="d-flex justify-content-center">
 								<App />
@@ -176,7 +175,7 @@ export const Order = () => {
 						</Card.Body>
 						<Card.Footer>
 							<small>
-								Monto de la compra: <b>¢{cartInfo()}</b>
+								Monto de la compra: <b>¢{datos.monto}</b>
 							</small>
 						</Card.Footer>
 					</Card>

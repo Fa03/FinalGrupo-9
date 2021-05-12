@@ -18,7 +18,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				};
 				const response = await fetch(URL, CONFIG);
 				const json = await response.json();
-				console.log("DATA >>>", json);
+				// console.log("DATA >>>", json);
 
 				setStore({ producto: json });
 			},
@@ -41,7 +41,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			setCarrito: (producto, cantidad) => {
 				const store = getStore();
 				setStore({ carrito: [...store.carrito, [producto, cantidad]] });
-				console.log(store.carrito);
+				// console.log(store.carrito);
 			},
 
 			quitarProducto: quitar => {
@@ -57,22 +57,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			actualizarCantidad: (producto, cantidad) => {
-				console.log(cantidad);
+				// console.log(cantidad);
 				const carritoCantidad = getStore().carrito;
-				console.log(producto);
+				// console.log(producto);
 				let indice = carritoCantidad.indexOf(producto.producto);
 				// let indice = -1;
 
 				// carritoCantidad.map((item, index) => {
 				// 	if (item[0].id == producto.producto) indice = index;
 				// });
-				console.log(indice);
-				console.log(carritoCantidad[indice]);
+				// console.log(indice);
+				// console.log(carritoCantidad[indice]);
 				carritoCantidad[indice][1] = cantidad;
 				setStore({ carrito: carritoCantidad });
 
 				// console.log(carritoCantidad);
-				console.log(getStore().carrito);
+				// console.log(getStore().carrito);
 			}
 		}
 	};
