@@ -3,13 +3,13 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 import "bootswatch/dist/litera/bootstrap.min.css";
 import { Home } from "./pages/home";
-import { Single } from "./pages/single";
+
 import { RetrivePass } from "./pages/retrivePass";
-import { Register } from "./pages/register";
+
 import { Order } from "./pages/order";
 import { MyOrders } from "./pages/myOrders";
 import { Products } from "./pages/products";
-import { Login } from "./pages/login";
+
 import SignIn from "./pages/login2";
 import SignUp from "./pages/register2";
 
@@ -34,9 +34,7 @@ const Layout = () => {
 						<Route exact path="/">
 							<Home />
 						</Route>
-						<Route exact path="/single/:theid">
-							<Single />
-						</Route>
+
 						<Route exact path="/retrivePass">
 							<RetrivePass />
 						</Route>

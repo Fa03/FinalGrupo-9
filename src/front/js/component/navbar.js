@@ -123,7 +123,10 @@ export const Navbar = () => {
 									</Button>
 								</Link>
 								<Link to="/order">
-									<Button variant="primary" onClick={handleClose}>
+									<Button
+										variant="primary"
+										onClick={handleClose}
+										style={{ background: "#c3777b", border: "none" }}>
 										Realizar Compra
 									</Button>
 								</Link>

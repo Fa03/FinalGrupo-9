@@ -88,7 +88,7 @@ export default function SignUp() {
 
 			var raw = JSON.stringify(datos);
 
-			fetch("https://3001-blue-koi-rys0mz5q.ws-us03.gitpod.io/api/register", {
+			fetch("https://3001-blue-donkey-capcu2gc.ws-us04.gitpod.io/api/register", {
 				method: "POST",
 				headers: myHeaders,
 				body: raw,
@@ -230,7 +230,12 @@ export default function SignUp() {
 					<Grid item xs={12}>
 						<ModalTerms />
 					</Grid>
-					<Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
+					<Button
+						type="submit"
+						fullWidth
+						variant="contained"
+						className={classes.submit}
+						style={{ background: "#c3777b", border: "none" }}>
 						Registrarse
 					</Button>
 					<Grid container justify="flex-end">

@@ -40,7 +40,7 @@ export const RetrivePass = () => {
 				redirect: "follow"
 			};
 
-			fetch("https://3001-teal-puma-i7eyxgd6.ws-us04.gitpod.io/api/newOrder/api/new_pass", {
+			fetch("https://3001-blue-donkey-capcu2gc.ws-us04.gitpod.io/api/new_pass", {
 				method: "PUT",
 				headers: myHeaders,
 				body: raw,
@@ -101,7 +101,7 @@ export const RetrivePass = () => {
 						</Form.Group> */}
 						<Row>
 							<Col className="d-flex justify-content-center">
-								<Button variant="primary" type="submit">
+								<Button type="submit" style={{ background: "#c3777b", border: "none" }}>
 									Enviar
 								</Button>
 							</Col>
