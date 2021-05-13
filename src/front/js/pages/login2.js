@@ -70,6 +70,9 @@ export default function SignIn() {
 
 			fetch("https://3001-blue-donkey-capcu2gc.ws-us04.gitpod.io/api/login", requestOptions)
 				.then(response => {
+					if (!response.ok) {
+						throw Error(response.json());
+					}
 					response.status === 200
 						? setTimeout(() => {
 								setConfLog(true);
@@ -78,7 +81,6 @@ export default function SignIn() {
 					return response.json();
 				})
 				.then(data => {
-					console.log(data);
 					if (typeof Storage !== "undefined") {
 						sessionStorage.setItem(
 							"user",
@@ -92,7 +94,6 @@ export default function SignIn() {
 								telefono: data.telefono
 							})
 						);
-						// sessionStorage.setItem();
 					}
 				})
 				.catch(error => console.log("error", error));
@@ -100,14 +101,14 @@ export default function SignIn() {
 	};
 
 	return (
-		<Container component="main" maxWidth="xs">
+		<Container component="main" maxWidth="xs" className="pt-3 mt-3">
 			<br />
 			<CssBaseline />
 			<div className={classes.paper}>
 				<Avatar className={classes.avatar}>
 					<LockOutlinedIcon />
 				</Avatar>
-				<Typography component="h1" variant="h5">
+				<Typography component="h1" variant="h5" style={{ color: "#c3777b" }}>
 					Inicio de sesión
 				</Typography>
 				<form className={classes.form} noValidate onSubmit={handleSubmit}>
@@ -141,7 +142,7 @@ export default function SignIn() {
 						fullWidth
 						variant="contained"
 						className={classes.submit}
-						style={{ background: "#c3777b", border: "none" }}>
+						style={{ background: "#c3777b", border: "none", color: "white", textTransform: "capitalize" }}>
 						Iniciar sesión
 					</Button>
 					<Grid container>

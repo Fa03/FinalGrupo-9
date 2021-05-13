@@ -3,6 +3,7 @@ import { Link, useParams, Redirect } from "react-router-dom";
 import { Container, Row, Col, Image, Card, Form, Button } from "react-bootstrap";
 import { Navbar } from "../component/navbar";
 import { Footer } from "../component/footer";
+import TextField from "@material-ui/core/TextField";
 
 export const RetrivePass = () => {
 	const [newPass, setNewPass] = useState(false);
@@ -40,7 +41,7 @@ export const RetrivePass = () => {
 				redirect: "follow"
 			};
 
-			fetch("https://3001-blue-donkey-capcu2gc.ws-us04.gitpod.io/api/new_pass", {
+			fetch("https://3001-blue-koi-rys0mz5q.ws-us04.gitpod.io/api/new_pass", {
 				method: "PUT",
 				headers: myHeaders,
 				body: raw,
@@ -59,42 +60,71 @@ export const RetrivePass = () => {
 		}
 	};
 	return (
-		<Container className="my-5 pt-5 d-flex">
-			<Row className="d-flex align-items-center justify-content-around">
+		<Container className="mt-3 pt-3 d-flex">
+			<Row className="d-flex align-items-center justify-content-around m-5 pt-5">
 				<Col xs={4}>
 					<Image
 						src="https://img.taste.com.au/lmVc1ciM/taste/2018/03/apr-18_apple-blueberry-pie-with-cinnamon-pastry-3000x2000-136232-1.jpg"
 						thumbnail
 					/>
-					{/* 	<Card>
-						<Card.Body>
-							<Card.Title>Card Title</Card.Title>
-							<Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle>
-							<Card.Text>
-								{`Some quick example text to build on the card title and make up the bulk of the card's
-								content.`}
-							</Card.Text>
-							<Card.Link href="#">Card Link</Card.Link>
-							<Card.Link href="#">Another Link</Card.Link>
-						</Card.Body>
-					</Card> */}
 				</Col>
 
 				<Col xs={4}>
 					<Form onSubmit={handleSubmit}>
 						<Form.Group controlId="formBasicEmail" onChange={handleInputChange}>
-							<Form.Label>Correo Electrónico</Form.Label>
-							<Form.Control type="email" placeholder="Tu Correo" name="email" />
+							<Form.Label style={{ color: "#c3777b", fontWeight: "bold" }}>Correo Electrónico</Form.Label>
+							{/* <Form.Control type="email" placeholder="Tu Correo" name="email" /> */}
+							<TextField
+								type="email"
+								variant="outlined"
+								margin="normal"
+								required
+								fullWidth
+								id="email"
+								label="Tu Correo"
+								name="email"
+								autoComplete="email"
+								autoFocus
+								onChange={handleInputChange}
+							/>
 							<Form.Text className="text-muted">{`Tu información estará segura con nosotros`}</Form.Text>
 						</Form.Group>
 
 						<Form.Group controlId="formBasicPassword" onChange={handleInputChange}>
-							<Form.Label>Contraseña</Form.Label>
-							<Form.Control type="password" placeholder="Nueva Contraseña" name="password" />
+							<Form.Label style={{ color: "#c3777b", fontWeight: "bold" }}>Contraseña</Form.Label>
+							{/* <Form.Control type="password" placeholder="Nueva Contraseña" name="password" /> */}
+							<TextField
+								type="password"
+								variant="outlined"
+								margin="normal"
+								required
+								fullWidth
+								id="password"
+								label="Contraseña"
+								name="password"
+								autoComplete="password"
+								autoFocus
+								onChange={handleInputChange}
+							/>
 						</Form.Group>
 						<Form.Group controlId="formBasicPassword" onChange={handleInputChange}>
-							<Form.Label>Confirmar Contraseña</Form.Label>
-							<Form.Control type="password" placeholder="Confirma Contraseña" name="confPassword" />
+							<Form.Label style={{ color: "#c3777b", fontWeight: "bold" }}>
+								Confirmar Contraseña
+							</Form.Label>
+							{/* <Form.Control type="password" placeholder="Confirma Contraseña" name="confPassword" /> */}
+							<TextField
+								type="password"
+								variant="outlined"
+								margin="normal"
+								required
+								fullWidth
+								id="confPassword"
+								label="Confirma tu Contraseña"
+								name="confPassword"
+								autoComplete="confPassword"
+								autoFocus
+								onChange={handleInputChange}
+							/>
 						</Form.Group>
 						{/* <Form.Group controlId="formBasicCheckbox">
 							<Form.Check type="checkbox" label="Check me out" />

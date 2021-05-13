@@ -52,7 +52,7 @@ export const CarouselHorizontal = categoria => {
 													<Card.Img
 														variant="top"
 														src={item2.imagen}
-														className="img-fluid "
+														className="img-fluid imagen23"
 														id="cardImagen"
 													/>
 
@@ -79,7 +79,7 @@ export const CarouselHorizontal = categoria => {
 																Agregar <AddShoppingCartIcon />
 															</Button>
 														)}
-														{console.log(store.carrito)}
+														{/* {console.log(store.carrito)} */}
 													</Card.Footer>
 												</Card>
 											);

@@ -11,6 +11,7 @@ export const Products = () => {
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
+		actions.getProducto();
 	}, []);
 
 	let categProductos = ["Mayonesa Keto", "Helado Keto", "Queque"]; //para remplazar con arreglo de categorias del store
