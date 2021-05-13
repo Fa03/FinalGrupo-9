@@ -91,7 +91,7 @@ export const Order = () => {
 				redirect: "follow"
 			};
 
-			fetch("https://3001-blue-donkey-capcu2gc.ws-us04.gitpod.io/api/newOrder", requestOptions)
+			fetch("https://3001-blue-cheetah-zv0zahkx.ws-us04.gitpod.io/api/newOrder", requestOptions)
 				.then(response => {
 					response.status === 200
 						? setTimeout(() => {
