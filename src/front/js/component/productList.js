@@ -30,8 +30,18 @@ const Productlist = () => {
 										className="d-flex justify-content-between align-items-center border-0 textoLista"
 										style={{ background: "#d8d1d8" }}>
 										{item.nombre}
-										<div className="contenedorImagen">
+										{/* <div className="contenedorImagen">
 											<Image className="imgLista img-responsive" src={item.imagen} />
+										</div> */}
+										<div className="flip-box contenedorImagen">
+											<div className="flip-box-inner">
+												<div className="flip-box-front">
+													<Image className="imgLista img-responsive" src={item.imagen} />
+												</div>
+												<div className="flip-box-back">
+													<Image className="imgLista img-responsive" src={item.imagen} />
+												</div>
+											</div>
 										</div>
 									</ListGroup.Item>
 								</div>

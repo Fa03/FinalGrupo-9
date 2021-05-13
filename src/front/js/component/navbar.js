@@ -28,7 +28,7 @@ export const Navbar = () => {
 			<Row>
 				<Col>
 					<nav className="navbar d-flex align-items-center">
-						<Link to="/">
+						<Link to="/" className="pl-4">
 							<Image
 								src="https://bl3301files.storage.live.com/y4mL88PRYo24KzhwyhNBaqkLtgWVsAXvbDAFqA7EjwOjVgZKDkVMaJWI_HKZ-pVLCgPnPaqa9QnvLwzXfLOca01kmGIv44UGXCrAyGInHIOHAHY-ULwvw--5Be7XkBhJlCZstGRA9MblS8bThEudsIai0HyPdl2fuaWPL-jE7si6YXLZNTDiSucyxxLgOMW4_t9?width=85&height=85&cropmode=none"
 								rounded
@@ -42,11 +42,11 @@ export const Navbar = () => {
 								Sweets by Fray
 							</p>
 						</div>
-						<div className="d-flex flex-nowrap align-items-center">
+						<div className="d-flex flex-nowrap align-items-center pr-3">
 							{userData ? (
 								<div className="d-flex ">
 									<Link style={{ color: "white", fontSize: 20, position: "relative" }} to="/myOrders">
-										<i className="far fa-user pr-3" style={{ fontSize: 40 }} />
+										<i className="far fa-user pr-3 silueta" style={{ fontSize: 40 }} />
 									</Link>
 									<Link to="/home">
 										<Button
@@ -61,7 +61,12 @@ export const Navbar = () => {
 								<Link to="/login">
 									<Button
 										type="button"
-										style={{ background: "#c3777b", border: "none", position: "inline-block" }}>
+										style={{
+											background: "#c3777b",
+											border: "none",
+											position: "inline-block static"
+										}}
+										className="btn">
 										Ingresar / Registrarse
 									</Button>
 								</Link>
@@ -71,7 +76,7 @@ export const Navbar = () => {
 								onClick={store.carrito.length == 0 ? handleShow2 : handleShow}
 								style={{ color: "white" }}>
 								<StorefrontIcon
-									className="pl-1"
+									className="pl-1 StoreIcon"
 									style={{ fontSize: 60, position: "inline-block" }}
 									color="none"
 								/>

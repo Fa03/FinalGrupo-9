@@ -27,7 +27,7 @@ export const MyOrders = () => {
 			redirect: "follow"
 		};
 
-		fetch("https://3001-blue-donkey-capcu2gc.ws-us04.gitpod.io/api/myOrders", requestOptions)
+		fetch("https://3001-blue-donkey-capcu2gc.ws-us04.gitpod.io/", requestOptions)
 			.then(response => response.json())
 			.then(data => setOrders(data))
 			.catch(error => console.log("error", error));
@@ -59,7 +59,7 @@ export const MyOrders = () => {
 		<Redirect to="/" />
 	) : (
 		<Container fluid className="mt-5 pt-5" style={{ background: "#d8d1d8" }}>
-			<Row className="d-flex align-items-center justify-content-around">
+			<Row className="d-flex align-items-center justify-content-around mt-3">
 				<Col xs={6} className="w-75">
 					{myUser.sexo == "Masculino" ? (
 						<h2>{"¡Hola " + myUser.nombre + ", Bienvenido!"}</h2>
@@ -112,7 +112,8 @@ export const MyOrders = () => {
 								{orders.map((item, i) => {
 									// console.log(item);
 									// console.log(item.productos);
-									console.log("Productos ordenadod", productosOrdenados(item.productos));
+									// console.log("Productos ordenadod", productosOrdenados(item.productos));
+									console.log(item.productos);
 									return (
 										<tr key={i}>
 											<td>{item.id}</td>

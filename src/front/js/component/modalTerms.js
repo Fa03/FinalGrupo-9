@@ -20,10 +20,12 @@ export const ModalTerms = () => {
 
 			<Modal show={show} onHide={handleClose}>
 				<Modal.Header closeButton>
-					<Modal.Title>Términos y condiciones</Modal.Title>
+					<Modal.Title>
+						<strong>TÉRMINOS Y CONDICIONES</strong>
+					</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
-					<h5>INFORMACIÓN RELEVANTE</h5>
+					<h5>Información Relevante</h5>
 					<p>
 						Es requisito necesario para la adquisición de los productos que se ofrecen en este sitio, que
 						lea y acepte los siguientes Términos y Condiciones que a continuación se redactan. El uso de
@@ -46,7 +48,7 @@ export const ModalTerms = () => {
 					</p>
 				</Modal.Body>
 				<Modal.Footer>
-					<Button variant="primary" onClick={handleClose}>
+					<Button variant="primary" onClick={handleClose} style={{ background: "#c3777b", border: "none" }}>
 						Close
 					</Button>
 				</Modal.Footer>

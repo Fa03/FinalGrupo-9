@@ -44,7 +44,8 @@ export const Order = () => {
 		let newDatos = {
 			usuario: datos.usuario,
 			metodo: datos.metodo,
-			productos: prods,
+			// productos: prods,
+			productos: store.carrito,
 			monto: monto1,
 			dirección: datos.dirección
 		};
