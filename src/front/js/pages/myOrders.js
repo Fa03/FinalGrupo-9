@@ -27,7 +27,7 @@ export const MyOrders = () => {
 			redirect: "follow"
 		};
 
-		fetch("https://3001-blue-donkey-capcu2gc.ws-us04.gitpod.io/api/myOrders", requestOptions)
+		fetch("https://3001-blue-cheetah-zv0zahkx.ws-us04.gitpod.io/api/myOrders", requestOptions)
 			.then(response => response.json())
 			.then(data => setOrders(data))
 			.catch(error => console.log("error", error));

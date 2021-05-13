@@ -41,7 +41,7 @@ export const RetrivePass = () => {
 				redirect: "follow"
 			};
 
-			fetch("https://3001-blue-koi-rys0mz5q.ws-us04.gitpod.io/api/new_pass", {
+			fetch("https://3001-blue-cheetah-zv0zahkx.ws-us04.gitpod.io/api/new_pass", {
 				method: "PUT",
 				headers: myHeaders,
 				body: raw,
@@ -103,7 +103,6 @@ export const RetrivePass = () => {
 								label="Contraseña"
 								name="password"
 								autoComplete="password"
-								autoFocus
 								onChange={handleInputChange}
 							/>
 						</Form.Group>
@@ -122,7 +121,6 @@ export const RetrivePass = () => {
 								label="Confirma tu Contraseña"
 								name="confPassword"
 								autoComplete="confPassword"
-								autoFocus
 								onChange={handleInputChange}
 							/>
 						</Form.Group>
