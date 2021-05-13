@@ -5,6 +5,7 @@ import StorefrontIcon from "@material-ui/icons/Storefront";
 import index from "../../styles/index.scss";
 import { Context } from "../store/appContext";
 import { ModalCarrito } from "./modalCarrito";
+import { PrecioCompra } from "./precioCompra";
 
 export const Navbar = () => {
 	const { store, actions } = useContext(Context);
@@ -47,7 +48,7 @@ export const Navbar = () => {
 									<Link style={{ color: "white", fontSize: 20, position: "relative" }} to="/myOrders">
 										<i className="far fa-user pr-3" style={{ fontSize: 40 }} />
 									</Link>
-									<Link to="/">
+									<Link to="/home">
 										<Button
 											type="button"
 											style={{ background: "#c3777b", border: "none" }}
@@ -110,23 +111,47 @@ export const Navbar = () => {
 
 					<Modal show={showModal} onHide={handleClose} className="modal right fade">
 						<Modal.Dialog>
-							<Modal.Header closeButton>
-								<Modal.Title>Productos en tu carrito</Modal.Title>
+							<Modal.Header closeButton className="modalHeader">
+								<Modal.Title style={{ color: "#c3777b" }}>Productos en tu carrito</Modal.Title>
 							</Modal.Header>
 							<Modal.Body>
 								<ModalCarrito />
 							</Modal.Body>
-							<Modal.Footer>
-								<Link to="/products">
-									<Button variant="secondary" onClick={handleClose}>
-										Seguir Comprando
-									</Button>
-								</Link>
-								<Link to="/order">
-									<Button variant="primary" onClick={handleClose}>
-										Realizar Compra
-									</Button>
-								</Link>
+							<Modal.Footer className="modalFooter">
+								<Row>
+									<Col style={{ paddingRight: "50px" }}>
+										<strong>
+											<p style={{ color: "#c3777b" }}>
+												Monto de tu compra: &#162;
+												<PrecioCompra />
+											</p>
+										</strong>
+									</Col>
+								</Row>
+
+								<Row className="my-0 mr-0">
+									<Col>
+										<Link to="/products">
+											<Button
+												style={{ border: "none", background: "#afaaab" }}
+												onClick={handleClose}>
+												Seguir Comprando
+											</Button>
+										</Link>
+										<Link to="/order">
+											<Button
+												variant="primary"
+												onClick={handleClose}
+												style={{
+													background: "#c3777b",
+													border: "none",
+													marginLeft: "10px"
+												}}>
+												Realizar Compra
+											</Button>
+										</Link>
+									</Col>
+								</Row>
 							</Modal.Footer>
 						</Modal.Dialog>
 					</Modal>

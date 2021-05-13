@@ -52,7 +52,7 @@ export const CarouselHorizontal = categoria => {
 													<Card.Img
 														variant="top"
 														src={item2.imagen}
-														className="img-fluid "
+														className="img-fluid imagen23"
 														id="cardImagen"
 													/>
 

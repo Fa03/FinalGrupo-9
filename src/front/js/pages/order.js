@@ -17,6 +17,8 @@ export const Order = () => {
 	const [datos, setDatos] = useState({
 		usuario: "",
 		metodo: "",
+		productos: "Pastel cumpleaños, Mayonesa Keto Chipotle",
+		monto: "5",
 		productos: [],
 		monto: "",
 		dirección: ""
@@ -37,6 +39,8 @@ export const Order = () => {
 			monto1 = monto1 + store.carrito[i][0].precio * store.carrito[i][1];
 			prods.push(store.carrito[i][0].nombre);
 		}
+		console.log(prods);
+
 		let newDatos = {
 			usuario: datos.usuario,
 			metodo: datos.metodo,
@@ -87,7 +91,7 @@ export const Order = () => {
 				redirect: "follow"
 			};
 
-			fetch("https://3001-blue-koi-rys0mz5q.ws-us04.gitpod.io/api/newOrder", requestOptions)
+			fetch("https://3001-blue-donkey-capcu2gc.ws-us04.gitpod.io/api/newOrder", requestOptions)
 				.then(response => {
 					response.status === 200
 						? setTimeout(() => {
@@ -110,14 +114,6 @@ export const Order = () => {
 			<Row className="d-flex align-items-center justify-content-around">
 				<Col xs={4}>
 					<Form onSubmit={handleSubmit}>
-						<Form.Group controlId="formBasicEmail" onChange={handleInputChange}>
-							<Form.Label>Correo Electrónico</Form.Label>
-							<Form.Control type="email" placeholder="Confirma tu correo electrónico" name="usuario" />
-						</Form.Group>
-						<Form.Group controlId="formGridDireccion" onChange={handleInputChange}>
-							<Form.Label>Dirección</Form.Label>
-							<Form.Control type="dirección" placeholder="Dirección de entrega" name="dirección" />
-						</Form.Group>
 						<Form.Group controlId="formGridMetodo" onChange={handleInputChange}>
 							<Form.Label>Método de Pago</Form.Label>
 							<Form.Control as="select" defaultValue="Elegir..." name="metodo">
@@ -127,6 +123,15 @@ export const Order = () => {
 								<option>SINPE Móvil</option>
 							</Form.Control>
 						</Form.Group>
+						<Form.Group controlId="formBasicEmail" onChange={handleInputChange}>
+							<Form.Label>Correo Electrónico</Form.Label>
+							<Form.Control type="email" placeholder="Confirma tu correo electrónico" name="usuario" />
+						</Form.Group>
+						<Form.Group controlId="formGridDireccion" onChange={handleInputChange}>
+							<Form.Label>Dirección</Form.Label>
+							<Form.Control type="dirección" placeholder="Dirección de entrega" name="dirección" />
+						</Form.Group>
+
 						{datos.metodo == "Tarjeta" ? (
 							<Col className="d-flex justify-content-center">
 								<App />
@@ -134,7 +139,7 @@ export const Order = () => {
 						) : null}
 
 						<Col className="d-flex justify-content-center">
-							<Button variant="primary" type="submit">
+							<Button type="submit" style={{ background: "#c3777b", border: "none" }}>
 								Hacer Pedido
 							</Button>
 						</Col>

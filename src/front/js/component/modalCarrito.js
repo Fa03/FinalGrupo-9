@@ -46,7 +46,7 @@ export const ModalCarrito = event => {
 					);
 				})}
 			</Row>
-			<Row>
+			{/* <Row>
 				<Col>
 					<strong>
 						<p>
@@ -55,7 +55,7 @@ export const ModalCarrito = event => {
 						</p>
 					</strong>
 				</Col>
-			</Row>
+			</Row> */}
 		</Container>
 	);
 };

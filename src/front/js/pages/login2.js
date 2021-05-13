@@ -68,7 +68,7 @@ export default function SignIn() {
 				redirect: "follow"
 			};
 
-			fetch("https://3001-blue-koi-rys0mz5q.ws-us04.gitpod.io/api/login", requestOptions)
+			fetch("https://3001-blue-donkey-capcu2gc.ws-us04.gitpod.io/api/login", requestOptions)
 				.then(response => {
 					if (!response.ok) {
 						throw Error(response.json());
@@ -96,19 +96,19 @@ export default function SignIn() {
 						);
 					}
 				})
-				.catch(err => console.log("error", error));
+				.catch(error => console.log("error", error));
 		}
 	};
 
 	return (
-		<Container component="main" maxWidth="xs">
+		<Container component="main" maxWidth="xs" className="pt-3 mt-3">
 			<br />
 			<CssBaseline />
 			<div className={classes.paper}>
 				<Avatar className={classes.avatar}>
 					<LockOutlinedIcon />
 				</Avatar>
-				<Typography component="h1" variant="h5">
+				<Typography component="h1" variant="h5" style={{ color: "#c3777b" }}>
 					Inicio de sesión
 				</Typography>
 				<form className={classes.form} noValidate onSubmit={handleSubmit}>
@@ -137,7 +137,12 @@ export default function SignIn() {
 						onChange={handleInputChange}
 					/>
 					<FormControlLabel control={<Checkbox value="remember" color="primary" />} label="Recordarme" />
-					<Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
+					<Button
+						type="submit"
+						fullWidth
+						variant="contained"
+						className={classes.submit}
+						style={{ background: "#c3777b", border: "none", color: "white", textTransform: "capitalize" }}>
 						Iniciar sesión
 					</Button>
 					<Grid container>

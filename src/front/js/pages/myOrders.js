@@ -4,6 +4,8 @@ import { Container, Row, Col, Image, Card, Form, Button } from "react-bootstrap"
 import { Navbar } from "../component/navbar";
 import { Footer } from "../component/footer";
 import Table from "react-bootstrap/Table";
+import { Redirect } from "react-router-dom";
+import SentimentVeryDissatisfiedIcon from "@material-ui/icons/SentimentVeryDissatisfied";
 
 export const MyOrders = () => {
 	const { store, actions } = useContext(Context);
@@ -25,7 +27,7 @@ export const MyOrders = () => {
 			redirect: "follow"
 		};
 
-		fetch("https://3001-blue-koi-rys0mz5q.ws-us04.gitpod.io/api/myOrders", requestOptions)
+		fetch("https://3001-blue-donkey-capcu2gc.ws-us04.gitpod.io/api/myOrders", requestOptions)
 			.then(response => response.json())
 			.then(data => setOrders(data))
 			.catch(error => console.log("error", error));
@@ -35,15 +37,36 @@ export const MyOrders = () => {
 		const userData = JSON.parse(sessionStorage.getItem("user"));
 
 		setMyUser(userData);
-
-		ordenes(userData.email);
+		if (userData != null) {
+			ordenes(userData.email);
+		}
 	}, []);
 
-	return (
-		<Container fluid className="my-5 pt-5" style={{ background: "#d8d1d8" }}>
+	const productosOrdenados = productos => {
+		let detalleProductos = "";
+		let arregloProductos = productos.split(",");
+
+		for (let i = 0; i < arregloProductos.lenght; i++) {
+			console.log(arregloProductos[i]);
+			detalleProductos.concat(arregloProductos[i]);
+			detalleProductos.concat(" ");
+		}
+		console.log("Detalle de Los productos", detalleProductos);
+		return detalleProductos;
+	};
+
+	return myUser == null ? (
+		<Redirect to="/" />
+	) : (
+		<Container fluid className="mt-5 pt-5" style={{ background: "#d8d1d8" }}>
 			<Row className="d-flex align-items-center justify-content-around">
 				<Col xs={6} className="w-75">
-					<h2>{"¡Hola " + myUser.nombre + " Bienvenido!"}</h2>
+					{myUser.sexo == "Masculino" ? (
+						<h2>{"¡Hola " + myUser.nombre + ", Bienvenido!"}</h2>
+					) : (
+						<h2>{"¡Hola " + myUser.nombre + ", Bienvenida!"}</h2>
+					)}
+
 					<h5> {"Tu información:"} </h5>
 
 					<Table striped bordered hover>
@@ -71,12 +94,14 @@ export const MyOrders = () => {
 				</Col>
 			</Row>
 			<Row className="d-flex align-items-left justify-content-around">
-				<Col xs={3}>
+				<Col xs={6}>
 					<h3>Tus Órdenes:</h3>
-					{orders ? (
+					{console.log(orders)}
+					{orders != undefined ? (
 						<Table striped bordered hover>
 							<thead>
 								<tr>
+									<th># Orden</th>
 									<th>Productos</th>
 									<th>Monto</th>
 									<th>Método</th>
@@ -85,10 +110,17 @@ export const MyOrders = () => {
 							</thead>
 							<tbody>
 								{orders.map((item, i) => {
+									// console.log(item);
+									// console.log(item.productos);
+									console.log("Productos ordenadod", productosOrdenados(item.productos));
 									return (
 										<tr key={i}>
-											<td>{item.productos}</td>
-											<td>{item.monto}</td>
+											<td>{item.id}</td>
+											<td>{"test texto"}</td>
+											<td>
+												&#162;
+												{item.monto}
+											</td>
 											<td>{item.metodo}</td>
 											<td>{item.dirección}</td>
 										</tr>
@@ -97,7 +129,10 @@ export const MyOrders = () => {
 							</tbody>
 						</Table>
 					) : (
-						<div>{<i className="fas fa-heart-broken" /> + "No tienes ninguna orden creada aún"}</div>
+						<div>
+							<SentimentVeryDissatisfiedIcon />
+							<p>Aún no tienes órdenes.</p>
+						</div>
 					)}
 				</Col>
 			</Row>

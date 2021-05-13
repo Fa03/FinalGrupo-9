@@ -88,7 +88,7 @@ export default function SignUp() {
 
 			var raw = JSON.stringify(datos);
 
-			fetch("https://3001-blue-koi-rys0mz5q.ws-us04.gitpod.io/api/register", {
+			fetch("https://3001-blue-donkey-capcu2gc.ws-us04.gitpod.io/api/register", {
 				method: "POST",
 				headers: myHeaders,
 				body: raw,
@@ -110,18 +110,18 @@ export default function SignUp() {
 		}
 	};
 	return (
-		<Container component="main" maxWidth="sm" style={{ background: "#d8d1d8" }}>
+		<Container component="main" maxWidth="sm" style={{ background: "#d8d1d8" }} className="my-2">
 			<br />
 			<CssBaseline />
 			<div className={classes.paper}>
 				<Avatar className={classes.avatar}>
 					<LockOutlinedIcon />
 				</Avatar>
-				<Typography component="h1" variant="h5">
+				<Typography component="h1" variant="h5" style={{ color: "#c3777b", fontWeight: "bold" }}>
 					Registrarse
 				</Typography>
 				<form className={classes.form} noValidate onSubmit={handleSubmit}>
-					<Grid container spacing={2}>
+					<Grid container spacing={1}>
 						<Grid item xs={12} sm={5}>
 							<TextField
 								autoComplete="fname"
@@ -230,13 +230,24 @@ export default function SignUp() {
 					<Grid item xs={12}>
 						<ModalTerms />
 					</Grid>
-					<Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
+					<Button
+						type="submit"
+						fullWidth
+						variant="contained"
+						className={classes.submit}
+						style={{
+							background: "#c3777b",
+							border: "none",
+							color: "white",
+							textTransform: "capitalize",
+							marginTop: "10px"
+						}}>
 						Registrarse
 					</Button>
 					<Grid container justify="flex-end">
 						<Grid item>
 							<Link href="#" variant="body2" to="/login">
-								Ya tienes una cuenta? Ingrese
+								Ya tienes una cuenta? Ingresa
 							</Link>
 						</Grid>
 					</Grid>

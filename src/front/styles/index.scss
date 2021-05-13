@@ -39,6 +39,20 @@
    background-color: #e6bfc0;
 }
 
+.modalFooter, .modalHeader{
+    position: sticky;
+   left: 0;
+   bottom: 0;
+   text-align: center;
+   padding-bottom: none;
+   margin-bottom: none;
+   display: inline-block;
+   z-index: 20;
+   background-color: #e6bfc0;
+}
+
+
+
 
 #cardImagen{
    width: 100%;
@@ -129,10 +143,10 @@
         margin: auto;
         width: 400px;
 		height: 95%;
-		-webkit-transform: translate3d(0%, 0, 0);
-		    -ms-transform: translate3d(0%, 0, 0);
-		     -o-transform: translate3d(0%, 0, 0);
-		        transform: translate3d(0%, 0, 0);
+		// -webkit-transform: translate3d(0%, 0, 0);
+		//     -ms-transform: translate3d(0%, 0, 0);
+		//      -o-transform: translate3d(0%, 0, 0);
+		//         transform: translate3d(0%, 0, 0);
 	}
 
 	.modal.right .modal-content {
@@ -243,3 +257,6 @@
     color: #b0b5bb;
 }
 
+.imagen23:hover {
+    transform: scale(1.1);
+}
