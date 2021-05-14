@@ -123,26 +123,55 @@ export const Order = () => {
 								<option>SINPE Móvil</option>
 							</Form.Control>
 						</Form.Group>
-						<Form.Group controlId="formBasicEmail" onChange={handleInputChange}>
-							<Form.Label>Correo Electrónico</Form.Label>
-							<Form.Control type="email" placeholder="Confirma tu correo electrónico" name="usuario" />
-						</Form.Group>
-						<Form.Group controlId="formGridDireccion" onChange={handleInputChange}>
-							<Form.Label>Dirección</Form.Label>
-							<Form.Control type="dirección" placeholder="Dirección de entrega" name="dirección" />
-						</Form.Group>
 
 						{datos.metodo == "Tarjeta" ? (
-							<Col className="d-flex justify-content-center">
-								<App />
-							</Col>
-						) : null}
+							<div>
+								<Form.Group controlId="formBasicEmail" onChange={handleInputChange}>
+									<Form.Label>Correo Electrónico</Form.Label>
+									<Form.Control
+										type="email"
+										placeholder="Confirma tu correo electrónico"
+										name="usuario"
+									/>
+								</Form.Group>
+								<Form.Group controlId="formGridDireccion" onChange={handleInputChange}>
+									<Form.Label>Dirección</Form.Label>
+									<Form.Control
+										type="dirección"
+										placeholder="Dirección de entrega"
+										name="dirección"
+									/>
+								</Form.Group>
 
-						<Col className="d-flex justify-content-center">
-							<Button type="submit" style={{ background: "#c3777b", border: "none" }}>
-								Hacer Pedido
-							</Button>
-						</Col>
+								<Col className="d-flex justify-content-center">
+									<App />
+								</Col>
+							</div>
+						) : (
+							<div>
+								<Form.Group controlId="formBasicEmail" onChange={handleInputChange}>
+									<Form.Label>Correo Electrónico</Form.Label>
+									<Form.Control
+										type="email"
+										placeholder="Confirma tu correo electrónico"
+										name="usuario"
+									/>
+								</Form.Group>
+								<Form.Group controlId="formGridDireccion" onChange={handleInputChange}>
+									<Form.Label>Dirección</Form.Label>
+									<Form.Control
+										type="dirección"
+										placeholder="Dirección de entrega"
+										name="dirección"
+									/>
+								</Form.Group>
+								<Col className="d-flex justify-content-center">
+									<Button type="submit" style={{ background: "#c3777b", border: "none" }}>
+										Hacer Pedido
+									</Button>
+								</Col>
+							</div>
+						)}
 					</Form>
 				</Col>
 				<Col xs={4} className="d-flex justify-content-center">
