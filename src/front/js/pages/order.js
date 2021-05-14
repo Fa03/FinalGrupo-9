@@ -34,12 +34,12 @@ export const Order = () => {
 	// CALCULO MONTO TOTAL y SET DATOS MONTO Y PRODUCTOS
 	const cartInfo = () => {
 		let monto1 = 0;
-		let prods = [];
+		let prods = "";
 		for (let i = 0; i < store.carrito.length; i++) {
 			monto1 = monto1 + store.carrito[i][0].precio * store.carrito[i][1];
-			prods.push(store.carrito[i][0].nombre);
+			prods = [...prods, store.carrito[i][0].nombre + " (" + store.carrito[i][1] + "),"];
+			console.log(prods);
 		}
-		console.log(prods);
 
 		let newDatos = {
 			usuario: datos.usuario,
@@ -51,7 +51,6 @@ export const Order = () => {
 		};
 
 		setDatos(newDatos);
-		console.log(datos);
 	};
 
 	// INPUT CHAGE Y LLENAR DATOS
@@ -92,7 +91,7 @@ export const Order = () => {
 				redirect: "follow"
 			};
 
-			fetch("https://3001-blue-donkey-capcu2gc.ws-us04.gitpod.io/api/newOrder", requestOptions)
+			fetch("https://3001-rose-raccoon-vvret31o.ws-us04.gitpod.io/api/newOrder", requestOptions)
 				.then(response => {
 					response.status === 200
 						? setTimeout(() => {
