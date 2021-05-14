@@ -22,7 +22,7 @@ export const Navbar = () => {
 	const userData = JSON.parse(sessionStorage.getItem("user"));
 	const logout = e => {
 		sessionStorage.removeItem("user");
-		window.location.reload(false);
+		// window.location.reload(false);
 	};
 	return (
 		<Container fluid className="sticky-top position-fixed contNavBar">
@@ -49,7 +49,7 @@ export const Navbar = () => {
 									<Link style={{ color: "white", fontSize: 20, position: "relative" }} to="/myOrders">
 										<i className="far fa-user pr-3 silueta" style={{ fontSize: 40 }} />
 									</Link>
-									<Link to="/cierreSesion">
+									<Link to="/cierreSesion" fade interval={9000}>
 										<Button
 											onClick={logout}
 											type="button"
