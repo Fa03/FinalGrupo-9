@@ -49,7 +49,7 @@ export const ModalTerms = () => {
 				</Modal.Body>
 				<Modal.Footer>
 					<Button variant="primary" onClick={handleClose} style={{ background: "#c3777b", border: "none" }}>
-						Close
+						Cerrar
 					</Button>
 				</Modal.Footer>
 			</Modal>
