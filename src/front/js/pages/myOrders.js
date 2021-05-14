@@ -27,7 +27,7 @@ export const MyOrders = () => {
 			redirect: "follow"
 		};
 
-		fetch("https://3001-blue-donkey-capcu2gc.ws-us04.gitpod.io/api/myOrders", requestOptions)
+		fetch("https://3001-rose-raccoon-vvret31o.ws-us04.gitpod.io/api/myOrders", requestOptions)
 			.then(response => response.json())
 			.then(data => setOrders(data))
 			.catch(error => console.log("error", error));
@@ -46,11 +46,11 @@ export const MyOrders = () => {
 		let detalleProductos = "";
 		productos = productos.replaceAll(`{`, "");
 		productos = productos.replaceAll(`}`, "");
-		console.log(productos);
+		// console.log(productos);
 		let arregloProductos = productos.split(",");
-		console.log("arregloProductos", arregloProductos);
+		// console.log("arregloProductos", arregloProductos);
 		arregloProductos.map((item, index) => {
-			console.log("Del ITem", item);
+			// console.log("Del ITem", item);
 			let itemSinCaracteres = item.replaceAll("{", "");
 			itemSinCaracteres = item.replaceAll("}", "");
 			itemSinCaracteres = item.replaceAll(`\"`, "");
@@ -63,7 +63,7 @@ export const MyOrders = () => {
 		// 	detalleProductos.concat(arregloProductos[i]);
 		// 	detalleProductos.concat(" ");
 		// }
-		console.log("Detalle de Los productos", detalleProductos);
+		// console.log("Detalle de Los productos", detalleProductos);
 		return detalleProductos;
 	};
 
@@ -108,7 +108,7 @@ export const MyOrders = () => {
 			<Row className="d-flex align-items-center justify-content-around">
 				<Col xs={12}>
 					<h3>Tus Órdenes:</h3>
-					{console.log(orders)}
+					{/* {console.log(orders)} */}
 					{orders != undefined ? (
 						<Table striped bordered hover className="w-100">
 							<thead>
@@ -124,8 +124,8 @@ export const MyOrders = () => {
 								{orders.map((item, i) => {
 									// console.log(item);
 									// console.log(item.productos);
-									console.log("Productos ordenados:", productosOrdenados(item.productos));
-									console.log(item.productos);
+									// console.log("Productos ordenados:", productosOrdenados(item.productos));
+									// console.log(item.productos);
 									return (
 										<tr key={i}>
 											<td>{item.id}</td>
