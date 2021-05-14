@@ -45,6 +45,7 @@ export const Order = () => {
 			usuario: datos.usuario,
 			metodo: datos.metodo,
 			productos: prods,
+			// productos: store.carrito,
 			monto: monto1,
 			dirección: datos.dirección
 		};
@@ -91,7 +92,7 @@ export const Order = () => {
 				redirect: "follow"
 			};
 
-			fetch("https://3001-blue-cheetah-zv0zahkx.ws-us04.gitpod.io/api/newOrder", requestOptions)
+			fetch("https://3001-blue-donkey-capcu2gc.ws-us04.gitpod.io/api/newOrder", requestOptions)
 				.then(response => {
 					response.status === 200
 						? setTimeout(() => {
@@ -111,8 +112,8 @@ export const Order = () => {
 
 	return (
 		<Container fluid className="my-5 pt-5" style={{ background: "#d8d1d8" }}>
-			<Row className="d-flex align-items-center justify-content-around">
-				<Col xs={4}>
+			<Row className="d-flex align-items-start justify-content-around pt-5 mt-5">
+				<Col xs={4} className="pl-5">
 					<Form onSubmit={handleSubmit}>
 						<Form.Group controlId="formGridMetodo" onChange={handleInputChange}>
 							<Form.Label>Método de Pago</Form.Label>
@@ -145,20 +146,24 @@ export const Order = () => {
 						</Col>
 					</Form>
 				</Col>
-
-				<Col xs={3}>
+				<Col xs={4} className="d-flex justify-content-center">
 					<Image
+						roundedCircle
 						src="http://merakimadrid.com/wp-content/uploads/2020/05/PEDIDO-DOMICILIO-300x300.jpg"
 						thumbnail
+						style={{ height: "250", width: "250px" }}
 					/>
-					<Card>
-						<Card.Body>
+				</Col>
+
+				<Col xs={4} className="p-0 pr-5">
+					<Card style={{ border: "none", padding: "0" }}>
+						<Card.Body style={{ background: "#d8d1d8", padding: "0" }}>
 							<Card.Title>Tus productos seleccionados:</Card.Title>
-							<Card.Subtitle className="mb-2 text-muted">Puede ser en una lista</Card.Subtitle>
+							{/* <Card.Subtitle className="mb-2 text-muted">Puede ser en una lista</Card.Subtitle> */}
 							<Card.Text>
 								<Table striped bordered hover>
 									<thead>
-										<tr>
+										<tr style={{ color: "black" }}>
 											<th>Producto</th>
 											<th>Precio</th>
 											<th>Cantidad</th>
@@ -178,7 +183,7 @@ export const Order = () => {
 								</Table>
 							</Card.Text>
 						</Card.Body>
-						<Card.Footer>
+						<Card.Footer style={{ background: "#d8d1d8" }}>
 							<small>
 								Monto de la compra: <b>¢{datos.monto}</b>
 							</small>

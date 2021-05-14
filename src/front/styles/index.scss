@@ -3,23 +3,38 @@
 */
 
 
-@import url('https://fonts.googleapis.com/css2?family=Akaya+Kanadaka&family=Cabin+Sketch&family=Montserrat&family=Petit+Formal+Script&family=Quattrocento+Sans&display=Indie+Flower&display=swap');
-// @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Akaya+Kanadaka&family=Cabin+Sketch&family=Montserrat&family=Petit+Formal+Script&family=Quattrocento+Sans&display=Indie+Flower&display=swap=Amatic+SC&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Akaya+Kanadaka&family=Amatic+SC&family=Cabin+Sketch:wght@700&family=Indie+Flower&family=Montserrat+Alternates:wght@100&family=Petit+Formal+Script&family=Quattrocento+Sans&display=swap');
+
 
 .tituloNavBar {
     font-family: 'Petit Formal Script', cursive;
+    font-size: 60px !important;
 }
 
-.textoLista, .cardTitle {
-    font-family: 'Cabin Sketch', cursive;
-    font-size: 18px;
-    color: rgb(202, 107, 49)
+.textoLista {
+    font-family: 'Indie Flower', cursive;
+    font-size: 24px;
+    color: rgb(222, 31, 85);
+            
+}
+
+.cardTitle {
+    font-family: 'Indie Flower';
+    font-size: xx-large;
+    color: rgb(222, 31, 85);
+            
 }
 
 .textHistoria{
     font-family: 'Indie Flower', cursive;
-    font-size: large;
-    color: rgb(202, 107, 49)
+    font-size: 22px;
+    color: rgba(199, 49, 91, 0.911);;
+}
+
+.textoGracias {
+    font-family: 'Amatic SC';
+    font-size: 50px;
 }
 
 
@@ -37,6 +52,7 @@
 //    height: auto;
    z-index: 20;
    background-color: #e6bfc0;
+   border-top: 4px solid white;
 }
 
 .modalFooter, .modalHeader{
@@ -64,8 +80,12 @@
     visibility: hidden; 
 }
 
-.contNavBar, navbar {
+.contNavBar, .navbar {
     background-color: #e6bfc0;
+    border-bottom: 2px solid white;
+    margin: 0;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
 }
 
 .buttonComprar {
@@ -260,3 +280,149 @@
 .imagen23:hover {
     transform: scale(1.1);
 }
+
+.btn:hover {
+    // color: rgb(19, 214, 19) !important;
+    box-shadow: 0 4px 16px rgb(179, 97, 97);
+    transition: all 0.2s ease;
+    
+}
+
+.StoreIcon:hover, .silueta:hover {
+    color: #c3777b;
+}
+
+
+//>>>>>para hacer que imagenes de lsitado en HOME flipeen
+
+.flip-box {
+  background-color: transparent;
+//   width: 300px;
+//   height: 200px;
+  border: 1px solid #f1f1f1;
+  perspective: 1000px;
+}
+
+.flip-box-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.flip-box:hover .flip-box-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-box-front, .flip-box-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.flip-box-front {
+  background-color: #bbb;
+  color: black;
+}
+
+.flip-box-back {
+  background-color: #555;
+  color: white;
+  transform: rotateY(180deg);
+}
+
+// >>>>>para hacer que imagenes de lsitado en HOME flipeen
+
+
+// >>>> formato de tablas  <<<<<
+
+table { 
+		width: 100%; 
+		border-collapse: collapse; 
+	}
+	/* Zebra striping */
+	tr:nth-of-type(odd) { 
+		background: #eee; 
+	}
+	th { 
+		background: #333; 
+		color: white; 
+		font-weight: bold; 
+	}
+	td, th { 
+		padding: 6px; 
+		border: 1px solid #ccc; 
+		text-align: left; 
+    }
+    
+    @media 
+	only screen and (max-width: 760px),
+	(min-device-width: 768px) and (max-device-width: 1024px)  {
+	
+		/* Force table to not be like tables anymore */
+		table, thead, tbody, th, td, tr { 
+			display: block; 
+		}
+		
+		/* Hide table headers (but not display: none;, for accessibility) */
+		thead tr { 
+			position: absolute;
+			top: -9999px;
+			left: -9999px;
+		}
+		
+		tr { border: 1px solid #ccc; }
+		
+		td { 
+			/* Behave  like a "row" */
+			border: none;
+			border-bottom: 1px solid #eee; 
+			position: relative;
+			padding-left: 50%; 
+		}
+		
+		td:before { 
+			/* Now like a table header */
+			position: absolute;
+			/* Top/left values mimic padding */
+			top: 6px;
+			left: 6px;
+			width: 45%; 
+			padding-right: 10px; 
+			white-space: nowrap;
+		}
+		
+		/*
+		Label the data
+		*/
+		td:nth-of-type(1):before { content: "Nombre"; }
+		td:nth-of-type(2):before { content: "Apellidos"; }
+		td:nth-of-type(3):before { content: "Fecha de Nacimiento"; }
+		td:nth-of-type(4):before { content: "Sexo"; }
+		td:nth-of-type(5):before { content: "Email"; }
+		td:nth-of-type(6):before { content: "Teléfono"; }
+		
+	}
+	
+	/* Smartphones (portrait and landscape) ----------- */
+	@media only screen
+	and (min-device-width : 320px)
+	and (max-device-width : 480px) {
+		body { 
+			padding: 0; 
+			margin: 0; 
+			width: 320px; }
+		}
+	
+	/* iPads (portrait and landscape) ----------- */
+	@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+		body { 
+			width: 495px; 
+		}
+	}
+
+// >>>> formato de tablas  <<<<<

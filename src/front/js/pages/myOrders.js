@@ -27,7 +27,7 @@ export const MyOrders = () => {
 			redirect: "follow"
 		};
 
-		fetch("https://3001-blue-cheetah-zv0zahkx.ws-us04.gitpod.io/api/myOrders", requestOptions)
+		fetch("https://3001-blue-donkey-capcu2gc.ws-us04.gitpod.io/api/myOrders", requestOptions)
 			.then(response => response.json())
 			.then(data => setOrders(data))
 			.catch(error => console.log("error", error));
@@ -44,13 +44,25 @@ export const MyOrders = () => {
 
 	const productosOrdenados = productos => {
 		let detalleProductos = "";
+		productos = productos.replaceAll(`{`, "");
+		productos = productos.replaceAll(`}`, "");
+		console.log(productos);
 		let arregloProductos = productos.split(",");
+		console.log("arregloProductos", arregloProductos);
+		arregloProductos.map((item, index) => {
+			console.log("Del ITem", item);
+			let itemSinCaracteres = item.replaceAll("{", "");
+			itemSinCaracteres = item.replaceAll("}", "");
+			itemSinCaracteres = item.replaceAll(`\"`, "");
+			detalleProductos = detalleProductos.concat(itemSinCaracteres);
+			detalleProductos = detalleProductos.concat(`\n`);
+		});
 
-		for (let i = 0; i < arregloProductos.lenght; i++) {
-			console.log(arregloProductos[i]);
-			detalleProductos.concat(arregloProductos[i]);
-			detalleProductos.concat(" ");
-		}
+		// for (let i = 0; i < arregloProductos.lenght; i++) {
+		// 	console.log(arregloProductos[i]);
+		// 	detalleProductos.concat(arregloProductos[i]);
+		// 	detalleProductos.concat(" ");
+		// }
 		console.log("Detalle de Los productos", detalleProductos);
 		return detalleProductos;
 	};
@@ -59,7 +71,7 @@ export const MyOrders = () => {
 		<Redirect to="/" />
 	) : (
 		<Container fluid className="mt-5 pt-5" style={{ background: "#d8d1d8" }}>
-			<Row className="d-flex align-items-center justify-content-around">
+			<Row className="d-flex align-items-center justify-content-around mt-3">
 				<Col xs={6} className="w-75">
 					{myUser.sexo == "Masculino" ? (
 						<h2>{"¡Hola " + myUser.nombre + ", Bienvenido!"}</h2>
@@ -93,16 +105,16 @@ export const MyOrders = () => {
 					</Table>
 				</Col>
 			</Row>
-			<Row className="d-flex align-items-left justify-content-around">
-				<Col xs={6}>
+			<Row className="d-flex align-items-center justify-content-around">
+				<Col xs={12}>
 					<h3>Tus Órdenes:</h3>
 					{console.log(orders)}
 					{orders != undefined ? (
-						<Table striped bordered hover>
+						<Table striped bordered hover className="w-100">
 							<thead>
 								<tr>
 									<th># Orden</th>
-									<th>Productos</th>
+									<th style={{ width: "900px" }}>Productos</th>
 									<th>Monto</th>
 									<th>Método</th>
 									<th>Dirección</th>
@@ -112,11 +124,12 @@ export const MyOrders = () => {
 								{orders.map((item, i) => {
 									// console.log(item);
 									// console.log(item.productos);
-									console.log("Productos ordenadod", productosOrdenados(item.productos));
+									console.log("Productos ordenados:", productosOrdenados(item.productos));
+									console.log(item.productos);
 									return (
 										<tr key={i}>
 											<td>{item.id}</td>
-											<td>{"test texto"}</td>
+											<td>{productosOrdenados(item.productos)}</td>
 											<td>
 												&#162;
 												{item.monto}

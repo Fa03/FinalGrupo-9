@@ -88,7 +88,7 @@ export default function SignUp() {
 
 			var raw = JSON.stringify(datos);
 
-			fetch("https://3001-blue-cheetah-zv0zahkx.ws-us04.gitpod.io/api/register", {
+			fetch("https://3001-blue-donkey-capcu2gc.ws-us04.gitpod.io/api/register", {
 				method: "POST",
 				headers: myHeaders,
 				body: raw,
@@ -113,7 +113,7 @@ export default function SignUp() {
 		<Container component="main" maxWidth="sm" style={{ background: "#d8d1d8" }} className="my-2">
 			<br />
 			<CssBaseline />
-			<div className={classes.paper}>
+			<div className={classes.paper} style={{ paddingTop: "10px" }}>
 				<Avatar className={classes.avatar}>
 					<LockOutlinedIcon />
 				</Avatar>
