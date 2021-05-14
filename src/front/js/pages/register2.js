@@ -120,7 +120,7 @@ export default function SignUp() {
 				<Typography component="h1" variant="h5" style={{ color: "#c3777b", fontWeight: "bold" }}>
 					Registrarse
 				</Typography>
-				<form className={classes.form} noValidate onSubmit={handleSubmit}>
+				<form className={classes.form} onSubmit={handleSubmit}>
 					<Grid container spacing={1}>
 						<Grid item xs={12} sm={5}>
 							<TextField
@@ -190,6 +190,7 @@ export default function SignUp() {
 
 						<Grid item xs={12}>
 							<TextField
+								type="email"
 								variant="outlined"
 								required
 								fullWidth

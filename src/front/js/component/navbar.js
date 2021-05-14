@@ -1,11 +1,12 @@
 import React, { useState, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { Image, Container, Row, Col, Button, Badge, Modal, Alert } from "react-bootstrap";
 import StorefrontIcon from "@material-ui/icons/Storefront";
 import index from "../../styles/index.scss";
 import { Context } from "../store/appContext";
 import { ModalCarrito } from "./modalCarrito";
 import { PrecioCompra } from "./precioCompra";
+import { cerrarSesion } from "../pages/cierreSesion";
 
 export const Navbar = () => {
 	const { store, actions } = useContext(Context);
@@ -42,17 +43,17 @@ export const Navbar = () => {
 								Sweets by Fray
 							</p>
 						</div>
-						<div className="d-flex flex-nowrap align-items-center pr-3">
+						<div className="d-flex flex-nowrap align-items-center pr-4">
 							{userData ? (
 								<div className="d-flex ">
 									<Link style={{ color: "white", fontSize: 20, position: "relative" }} to="/myOrders">
 										<i className="far fa-user pr-3 silueta" style={{ fontSize: 40 }} />
 									</Link>
-									<Link to="/home">
+									<Link to="/cierreSesion">
 										<Button
+											onClick={logout}
 											type="button"
-											style={{ background: "#c3777b", border: "none" }}
-											onClick={logout}>
+											style={{ background: "#c3777b", border: "none" }}>
 											Cerrar Sesión
 										</Button>
 									</Link>

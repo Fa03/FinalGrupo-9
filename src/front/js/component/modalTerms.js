@@ -9,7 +9,7 @@ export const ModalTerms = () => {
 	return (
 		<Container>
 			<Row>
-				<Form.Check type="checkbox" />
+				<Form.Check required type="checkbox" />
 				<label variant="primary">Acepto los términos y condiciones</label>
 				<Link>
 					<label variant="primary" onClick={handleShow}>

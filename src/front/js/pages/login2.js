@@ -96,7 +96,9 @@ export default function SignIn() {
 						);
 					}
 				})
-				.catch(error => console.log("error", error));
+				.catch(error =>
+					console.log("error", alert("La contraseña o el correo es incorrecto, favor intente de nuevo"))
+				);
 		}
 	};
 
@@ -111,8 +113,9 @@ export default function SignIn() {
 				<Typography component="h1" variant="h5" style={{ color: "#c3777b" }}>
 					Inicio de sesión
 				</Typography>
-				<form className={classes.form} noValidate onSubmit={handleSubmit}>
+				<form className={classes.form} onSubmit={handleSubmit}>
 					<TextField
+						type="email"
 						variant="outlined"
 						margin="normal"
 						required
